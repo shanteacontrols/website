@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Touchscreen support</title>
+  <desc id="desc">A touchscreen with a finger tap.</desc>
+  <g fill="none" stroke="#2c3e50" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+    <rect x="16" y="8" width="32" height="48" rx="5" />
+    <path d="M27 48h10" />
+    <path d="M24 21h16" />
+    <path d="M24 31h10" />
+    <path d="M35 39V27" />
+    <path d="M35 27a4 4 0 0 1 8 0v8" />
+    <path d="M43 35h4a4 4 0 0 1 4 4v3a12 12 0 0 1-12 12h-3a9 9 0 0 1-7-3l-5-6a3 3 0 0 1 4-4l5 4" />
+  </g>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Inputs</title>
+  <desc id="desc">Signals flowing into a controller block.</desc>
+  <g fill="none" stroke="#2c3e50" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+    <rect x="45" y="20" width="14" height="24" rx="3" />
+    <path d="M12 20h14" />
+    <path d="M12 32h31" />
+    <path d="M12 44h14" />
+    <path d="M26 20v24" />
+    <path d="M26 32h19" />
+    <path d="m39 26 6 6-6 6" />
+    <circle cx="12" cy="20" r="3" fill="#2c3e50" stroke="none" />
+    <circle cx="12" cy="32" r="3" fill="#2c3e50" stroke="none" />
+    <circle cx="12" cy="44" r="3" fill="#2c3e50" stroke="none" />
+  </g>
+</svg>
