@@ -27,7 +27,14 @@
         <div class="icon parent">
           <div class="circle parent">
             <div class="circle child-center">
+              {% assign feature_title = feature.title | downcase %}
+              {% if feature.svg %}
+              <img class="feature-svg child-center" src="{{ site.baseurl }}/images/{{ feature.svg }}" alt="" aria-hidden="true" />
+              {% elsif feature_title == "open source" or feature_title == "opensource" %}
+              <img class="feature-svg child-center" src="{{ site.baseurl }}/images/icons/open-source.svg" alt="" aria-hidden="true" />
+              {% else %}
               <i class="{{ feature.icon }} child-center"></i>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -40,6 +47,14 @@
       {% endfor %}
 
     </div>
+
+    {% if site.features-extra-content %}
+    <div class="row">
+      <div class="col-md-8 col-md-push-2 col-sm-12 features-extra-content">
+        {{ site.features-extra-content | markdownify }}
+      </div>
+    </div>
+    {% endif %}
 
   </div>
 </section>

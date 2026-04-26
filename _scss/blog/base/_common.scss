@@ -83,6 +83,37 @@ body {
       }
     }
   }
+  &.post-title-header {
+    background: $site-accent;
+    color: $white-text;
+    padding-top: 18px;
+    padding-bottom: 18px;
+
+    .title {
+      width: 100%;
+      max-width: 860px;
+      margin-right: auto;
+      margin-left: auto;
+
+      h2 {
+        color: $white-text;
+        max-width: 860px;
+        font-size: 44px;
+        line-height: 1.25;
+        margin-right: auto;
+        margin-left: auto;
+      }
+    }
+
+    .post-sp-meta {
+      color: $white-text;
+      font-size: 20px;
+
+      i {
+        color: $white-text;
+      }
+    }
+  }
 }
 .btn-read {
   position: relative;
@@ -99,7 +130,7 @@ body {
     color: #404040;
     font-weight: $font-medium;
     &:hover {
-      color: $hover;
+      color: $site-accent;
       transition: all 0.3s ease-out;
     }
     &:before {
@@ -108,7 +139,7 @@ body {
       left: 0;
       width: 0%;
       height: 2px;
-      background: $hover;
+      background: $site-accent;
       content: "";
       opacity: 0;
       transition: all 0.4s ease-out;
@@ -145,26 +176,13 @@ input[type="search"] {
   margin-bottom: 0;
 }
 .post-pagination {
-  .page-count {
-    margin-top: 7px;
-    font-weight: 500;
-  }
-  p {
-    display: inline-block;
+  .load-more-posts {
     margin: 0;
-    padding: 0;
-    a {
-      display: block;
-      transition: all 0.4s linear;
-      color: #404040;
-      border-radius: 35px;
-      padding: 10px 25px;
-      box-shadow: 0px 15px 40px -5px rgba(42, 154, 108, 0.23);
-      &:hover {
-        background: $hover;
-        transition: all 0.3s linear;
-        color: $white-text;
-      }
+    @include load-more-button($site-accent, $white-text, $font-medium);
+
+    &.is-loading {
+      pointer-events: none;
+      opacity: 0.7;
     }
   }
 }

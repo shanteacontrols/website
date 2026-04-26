@@ -19,34 +19,35 @@ layout: blog
           {% endif %}
 
           <div class="entry-content">{{page.content}}</div>
-          <div class="inner-padding fullwidth pb-60">
-            <div class="post-share-icon clearfix">
-              <div class="tag-list">
-                <div class="row">
-                  <div class="col-md-8">
-                    <p class="float-left pr-2"><strong>Tags :</strong></p>
-                    <ul class="float-left">
-                      {% for tag in page.tags %} {% capture tag_name %}{{ tag
-                      }}{% endcapture %}
-                      <li>
-                        <a href="/tag/{{tag_name}}/blog.html"> #{{tag_name}}</a>
-                      </li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                  <div class="col-md-4"></div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
+        <div class="post-end-divider" aria-hidden="true"></div>
         <div class="categories-carousel pb-60 clearfix">
-          <div class="section-title">
-            <h3>Related Posts</h3>
-          </div>
+          <header class="section-header text-center">
+            <h2>Related Posts</h2>
+          </header>
           {% include related_posts_carousel.html %}
         </div>
       </div>
     </div>
   </div>
 </div>
+<script>
+  (function () {
+    var relatedPostList = document.querySelector('.related-post-list');
+
+    if (!relatedPostList) return;
+
+    relatedPostList.addEventListener('click', function (event) {
+      var card = event.target.closest('.related-post-card[data-href]');
+      if (!card || event.target.closest('a')) return;
+      window.location.href = card.dataset.href;
+    });
+
+    relatedPostList.addEventListener('keydown', function (event) {
+      var card = event.target.closest('.related-post-card[data-href]');
+      if (card && event.key === 'Enter') {
+        window.location.href = card.dataset.href;
+      }
+    });
+  }());
+</script>

@@ -1,0 +1,2 @@
+[quoted from eurorackworld on GitHub discussions]
+I cannot state enough how much I like Opendeck and how I value all the work done for this. I'm using Opendeck currently on 99% on the controllers I'm selling (1% is just custom Arduino stuff for non midi boxes) and it's a breeze customizing the firmware to my needs and to give the customers the option to configure the controllers even better themselves.

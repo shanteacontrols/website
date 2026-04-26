@@ -1,0 +1,62 @@
+<!-- DubFocus 16 Section -->
+{% assign dubfocus16 = site.gallery.dubfocus16 %}
+{% assign dubfocus16_dir = dubfocus16.dir | default: 'images/dubfocus' %}
+{% assign dubfocus16_image_extensions = '.jpg,.jpeg,.png,.gif,.webp' %}
+{% capture dubfocus16_info_paths %}{% for file in site.static_files %}{% assign extension = file.extname | downcase %}{% assign path_match = file.path | split: dubfocus16_dir %}{% if path_match.size > 1 and extension == '.txt' %}{% assign relative_path = path_match[1] | remove_first: '/' %}|{{ dubfocus16_dir }}/{{ relative_path }}|{% endif %}{% endfor %}{% endcapture %}
+
+<section class="site-section dubfocus16-section" id="dubfocus16">
+  <div class="container">
+
+    <div class="row text-center">
+      <header class="col-md-8 col-md-push-2 col-sm-12 section-header">
+        <h2>{{ dubfocus16.title }}</h2>
+        <hr class="normal">
+      </header>
+
+      <div class="col-md-8 col-md-push-2 col-sm-12 section-content">
+        <p>{{ dubfocus16.description }}</p>
+      </div>
+    </div>
+
+    <div id="dubfocus16-container" class="dubfocus16-gallery">
+      {% for file in site.static_files %}
+        {% assign extension = file.extname | downcase %}
+        {% assign path_match = file.path | split: dubfocus16_dir %}
+        {% if path_match.size > 1 and dubfocus16_image_extensions contains extension %}
+          {% assign relative_path = path_match[1] | remove_first: '/' %}
+          {% assign filename = relative_path | split: '/' | last %}
+          {% assign title = filename | split: '.' | first | replace: '_', ' ' | replace: '-', ' ' | capitalize %}
+          {% assign image_path = dubfocus16_dir | append: '/' | append: relative_path %}
+          {% assign image_url = image_path | replace: ' ', '%20' | relative_url %}
+          {% assign info_path = image_path | replace: file.extname, '.txt' %}
+          {% assign info_token = '|' | append: info_path | append: '|' %}
+          {% assign has_info = false %}
+          {% if dubfocus16_info_paths contains info_token %}
+            {% assign has_info = true %}
+          {% endif %}
+          {% assign display_title = dubfocus16.title %}
+          {% if has_info %}
+            {% assign display_title = title %}
+            {% assign info_url = info_path | replace: ' ', '%20' | relative_url %}
+          {% endif %}
+        <a
+          class="dubfocus16-item"
+          data-src="{{ image_url }}"
+          data-title="{{ display_title }}"
+          {% if has_info %}
+          data-info-src="{{ info_url }}"
+          {% endif %}
+          data-category="DubFocus 16">
+          <span class="img-wrap">
+            <img src="{{ image_url }}" alt="{{ title }}">
+          </span>
+        </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="gallery-load-more-wrapper">
+      <button class="gallery-load-more" type="button" data-gallery-load-more="dubfocus16-container">Load More</button>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">14-bit support</title>
+  <desc id="desc">A rising bar chart with an upward arrow.</desc>
+  <path fill="#2c3e50" d="M12 48h9V34h-9v14Zm15 0h9V25h-9v23Zm15 0h9V16h-9v32Z" />
+  <path fill="none" stroke="#2c3e50" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="m14 25 12-10 10 7 15-14" />
+  <path fill="#2c3e50" d="M47 7h10v10Z" />
+</svg>

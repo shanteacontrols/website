@@ -1,0 +1,24 @@
+@mixin load-more-button($accent-color, $text-on-accent, $font-weight) {
+  background: transparent;
+  border: 2px solid $accent-color;
+  color: $accent-color;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: $font-weight;
+  letter-spacing: 0.08rem;
+  padding: 14px 38px;
+  text-transform: uppercase;
+  transition: all 0.3s linear;
+
+  &:focus-visible {
+    background: $accent-color;
+    color: $text-on-accent;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: $accent-color;
+      color: $text-on-accent;
+    }
+  }
+}

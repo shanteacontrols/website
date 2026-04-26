@@ -6,8 +6,67 @@
  *
  **/
 
- [data-categories].hidden{
-  display: none;
+@mixin gallery-thumbnail-grid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+@mixin gallery-thumbnail-tile {
+  background: $white;
+  border: 1px solid #eae4e45c;
+  box-shadow: 1px 1px 9px 0px rgba(156, 202, 183, 0.27);
+  box-sizing: border-box;
+  display: block;
+  margin-bottom: 0;
+  overflow: visible;
+  padding: 0;
+  position: relative;
+  transform: scale(0.95);
+  transition: all $transition-links $transition-links-type;
+
+  > .img-wrap {
+    display: block;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 75%;
+    position: relative;
+
+    img {
+      display: block;
+      height: 100% !important;
+      inset: 0;
+      max-width: none;
+      object-fit: cover;
+      object-position: center;
+      position: absolute;
+      transition:
+        filter $transition-links $transition-links-type,
+        transform $transition-links $transition-links-type;
+      transform: none;
+      transform-origin: center;
+      width: 100%;
+    }
+  }
+
+  &:hover {
+    border-color: rgba($site-accent, 0.55);
+    box-shadow: 0 0 64px 14px rgba($site-accent, 0.24);
+    transform: translateY(-5px) scale(0.95);
+
+    > .img-wrap img {
+      filter: brightness(0.9);
+      transform: scale(1.05);
+    }
+  }
 }
 
 section.portfolio-section {
@@ -62,33 +121,34 @@ section.portfolio-section {
 
   }
 
-  img:hover {
-    box-shadow: 0 0 2px 1px rgba($primary, 0.5);
+  #board-container {
+    @include gallery-thumbnail-grid;
+
+    .board {
+      @include gallery-thumbnail-tile;
+
+      &.hidden {
+        display: none !important;
+      }
+    }
+  }
+
+  #gallery-container {
+    @include gallery-thumbnail-grid;
+
+    .item.hidden {
+      display: none !important;
+    }
   }
 
   // Portfolio Grid
-  .portfolio-grid {
+  .portfolio-grid,
+  #gallery-container {
     overflow-x: hidden;
 
     // Portfolio Grid Item
     .item {
-      display: block;
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 30px;
-      transform: scale(0.95);
-      transition: all $transition-links $transition-links-type;
-
-      // Item Image
-      .img-wrap {
-        position: relative;
-
-        img {
-          width: 100%;
-          display: block;
-        }
-
-      }
+      @include gallery-thumbnail-tile;
 
       // Item Hover
       &.visible {
@@ -167,6 +227,328 @@ section.portfolio-section {
 
     }
 
+  }
+
+}
+
+section.dubfocus16-section {
+  .section-content {
+    margin-bottom: 45px;
+
+    p {
+      line-height: 1.7;
+    }
+  }
+
+  .dubfocus16-gallery {
+    @include gallery-thumbnail-grid;
+  }
+
+  .dubfocus16-item {
+    @include gallery-thumbnail-tile;
+
+    &.hidden {
+      display: none !important;
+    }
+  }
+}
+
+.gallery-load-more-wrapper {
+  margin-top: 44px;
+  text-align: center;
+}
+
+.gallery-load-more {
+  @include load-more-button($primary, $white, 500);
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.site-gallery-viewer {
+  background: #151515;
+  bottom: 0;
+  color: $white;
+  display: none;
+  font-family: $font-family, Arial, sans-serif;
+  height: 100vh;
+  left: 0;
+  letter-spacing: normal;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 9999;
+
+  &.is-open {
+    display: flex;
+  }
+}
+
+.site-gallery-stage {
+  align-items: center;
+  background: #111;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  min-width: 0;
+  overflow: hidden;
+  padding: 48px;
+  position: relative;
+}
+
+.site-gallery-image {
+  bottom: 48px;
+  display: block;
+  left: 48px;
+  margin: auto;
+  max-height: calc(100vh - 96px);
+  max-width: 100%;
+  object-fit: contain;
+  position: absolute;
+  right: 48px;
+  top: 48px;
+  z-index: 1;
+}
+
+.site-gallery-incoming-image {
+  opacity: 0;
+}
+
+.site-gallery-info {
+  background: #181818;
+  border-left: 1px solid rgba($white, 0.16);
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 0 360px;
+  flex-direction: column;
+  max-width: 360px;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 32px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.site-gallery-actions {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-bottom: 48px;
+}
+
+.site-gallery-counter {
+  color: rgba($white, 0.92);
+  font-size: 1.35rem;
+  margin-right: auto;
+}
+
+.site-gallery-close,
+.site-gallery-nav {
+  background: transparent;
+  border: 0;
+  color: $white;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+
+  &:active,
+  &:focus,
+  &:hover {
+    background: transparent;
+    outline: 0;
+  }
+}
+
+.site-gallery-close {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  &:hover {
+    .site-gallery-close-disc {
+      background: rgba($black, 0.55);
+    }
+
+    .site-gallery-close-icon {
+      &::before,
+      &::after {
+        background: $primary;
+      }
+    }
+  }
+}
+
+.site-gallery-close-disc {
+  align-items: center;
+  background: rgba($black, 0.42);
+  border-radius: 50%;
+  display: flex;
+  height: 44px;
+  justify-content: center;
+  transition: background-color $transition-links $transition-links-type;
+  width: 44px;
+}
+
+.site-gallery-close-icon {
+  display: block;
+  height: 22px;
+  position: relative;
+  width: 22px;
+
+  &::before,
+  &::after {
+    background: $white;
+    content: '';
+    display: block;
+    height: 3px;
+    left: 1px;
+    position: absolute;
+    top: 10px;
+    transition: background-color $transition-links $transition-links-type;
+    width: 20px;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+}
+
+.site-gallery-nav {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  &:hover {
+    .site-gallery-nav-disc {
+      background: rgba($black, 0.55);
+    }
+
+    .site-gallery-nav-arrow {
+      border-color: $primary;
+    }
+  }
+
+  .site-gallery-nav-disc {
+    align-items: center;
+    background: rgba($black, 0.42);
+    border-radius: 50%;
+    display: flex;
+    height: 44px;
+    justify-content: center;
+    transition: background-color $transition-links $transition-links-type;
+    width: 44px;
+  }
+
+  .site-gallery-nav-arrow {
+    border-color: $white;
+    border-style: solid;
+    display: block;
+    height: 14px;
+    transition: border-color $transition-links $transition-links-type;
+    width: 14px;
+  }
+}
+
+.site-gallery-prev {
+  .site-gallery-nav-arrow {
+    border-width: 0 0 3px 3px;
+    transform: rotate(45deg);
+    margin-left: 5px;
+  }
+}
+
+.site-gallery-next {
+  .site-gallery-nav-arrow {
+    border-width: 3px 3px 0 0;
+    transform: rotate(45deg);
+    margin-right: 5px;
+  }
+}
+
+.site-gallery-title {
+  color: $white;
+  font-size: 1.55rem;
+  line-height: 1.25;
+  margin: 0 0 12px;
+
+  &.is-hidden {
+    display: none;
+  }
+}
+
+.site-gallery-category {
+  color: $primary;
+  font-size: 1rem;
+  margin: 0 0 36px;
+  text-transform: uppercase;
+
+  &.is-hidden {
+    display: none;
+  }
+}
+
+.site-gallery-extra {
+  color: rgba($white, 0.78);
+  display: none;
+  font-size: 1.2rem;
+  line-height: 1.65;
+  white-space: pre-line;
+
+  &.is-visible {
+    display: block;
+  }
+}
+
+@media (max-width: 900px) {
+  .site-gallery-viewer {
+    flex-direction: column;
+    height: 100dvh;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .site-gallery-stage {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 56px 18px 18px;
+    touch-action: none;
+  }
+
+  .site-gallery-image {
+    bottom: 18px;
+    left: 18px;
+    max-height: calc(100% - 74px);
+    max-width: calc(100% - 36px);
+    pointer-events: none;
+    right: 18px;
+    top: 56px;
+    user-select: none;
+  }
+
+  .site-gallery-info {
+    border-left: 0;
+    border-top: 1px solid rgba($white, 0.16);
+    flex: 0 0 34dvh;
+    max-height: 34dvh;
+    max-width: none;
+    min-height: 0;
+    padding: 20px;
+    width: 100%;
+  }
+
+  .site-gallery-actions {
+    margin-bottom: 20px;
+  }
+
+  .site-gallery-title {
+    font-size: 1.35rem;
   }
 
 }

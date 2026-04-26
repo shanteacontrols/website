@@ -1,11 +1,16 @@
 (function ($) {
 	"use strict";
 	
-/* Mobile-menu	 */
-$('.nav-button').on('click', function(){
-  $('body').toggleClass('nav-open');
+$('.related-post-list').on('click', '.single-item[data-href]', function(event) {
+  if ($(event.target).closest('a').length) return;
+  window.location.href = $(this).data('href');
 });
 
+$('.related-post-list').on('keydown', '.single-item[data-href]', function(event) {
+  if (event.key === 'Enter') {
+    window.location.href = $(this).data('href');
+  }
+});
 
 /* Post-carousel */
 $('.related-post-carousel').owlCarousel({

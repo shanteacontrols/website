@@ -1,48 +1,98 @@
-{% include hero_area.html %}
-<div class="main-content-area pb-100 clearfix">
+<div class="main-content-area blog-listing-area pb-100 clearfix">
   <div class="container">
     <div class="row">
-      <div class="col-lg-10 col-md-10 offset-md-2 offset-lg-2">
-        {% for post in paginator.posts %} {% if forloop.index !=1 %}
+      <div class="col-lg-10 col-md-10 mx-auto blog-post-list">
+        {% for post in paginator.posts %}
         <div
           class="blog-list wow fadeIn"
           data-wow-delay="100ms"
           data-wow-duration=".5s"
         >
-          <div class="list-block block-{{forloop.index}}">
+          <div class="list-block block-{{forloop.index}}" data-href="{{post.url}}" role="link" tabindex="0">
+            {% if forloop.index == 1 %}
+            <span class="featured-label">Latest Post</span>
+            {% endif %}
+            <h2>{{post.title}}</h2>
             <span>{{post.date | date_to_long_string}}</span>
-            <h2><a href="{{post.url}}">{{post.title}}</a></h2>
-            <p>{{post.excerpt | truncatewords:30 }}</p>
+            <p>{{post.excerpt | strip_html | truncatewords:30 }}</p>
             <div class="btn-read"><a href="{{post.url}}">Read More</a></div>
           </div>
         </div>
-        {% endif %} {% endfor %}
+        {% endfor %}
       </div>
     </div>
-    {% if paginator.total_pages > 1 %}
+    {% if paginator.next_page %}
     <div class="row">
       <div class="col-lg-12">
         <div class="post-pagination pt-100 text-center clearfix">
-          {% if paginator.previous_page %}
-          <p class="float-left">
-            <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}"
-              >Prev {{pre}}
-            </a>
-          </p>
-          {% endif %}
-          <p class="page-count">
-            Page {{paginator.page}} of {{paginator.total_pages}}
-          </p>
-          {% if paginator.next_page %}
-          <p class="float-right">
-            <a href="{{ paginator.next_page_path | prepend: site.baseurl }}"
-              >Next</a
-            >
-          </p>
-          {% endif %}
+          <a class="load-more-posts" href="{{ paginator.next_page_path | prepend: site.baseurl }}">Load More</a>
         </div>
       </div>
     </div>
     {% endif %}
   </div>
 </div>
+<script>
+  (function () {
+    var postList = document.querySelector('.blog-post-list');
+    var pagination = document.querySelector('.post-pagination');
+
+    if (postList) {
+      postList.addEventListener('click', function (event) {
+        var card = event.target.closest('.list-block[data-href]');
+        if (!card || event.target.closest('a')) return;
+        window.location.href = card.dataset.href;
+      });
+
+      postList.addEventListener('keydown', function (event) {
+        var card = event.target.closest('.list-block[data-href]');
+        if (card && event.key === 'Enter') {
+          window.location.href = card.dataset.href;
+        }
+      });
+    }
+
+    if (pagination) {
+      pagination.addEventListener('click', function (event) {
+        var loadMore = event.target.closest('.load-more-posts');
+        if (!loadMore) return;
+
+        event.preventDefault();
+        loadMore.blur();
+
+        var nextPageUrl = loadMore.getAttribute('href');
+        var originalText = loadMore.textContent;
+
+        loadMore.textContent = 'Loading...';
+        loadMore.classList.add('is-loading');
+
+        fetch(nextPageUrl)
+          .then(function (response) {
+            if (!response.ok) throw new Error('Unable to load more posts.');
+            return response.text();
+          })
+          .then(function (html) {
+            var nextPage = new DOMParser().parseFromString(html, 'text/html');
+            var nextPosts = nextPage.querySelectorAll('.blog-post-list .blog-list');
+            var nextLoadMore = nextPage.querySelector('.load-more-posts');
+
+            nextPosts.forEach(function (post) {
+              postList.appendChild(document.importNode(post, true));
+            });
+
+            if (nextLoadMore) {
+              loadMore.setAttribute('href', nextLoadMore.getAttribute('href'));
+              loadMore.textContent = originalText;
+              loadMore.classList.remove('is-loading');
+            } else {
+              pagination.remove();
+            }
+          })
+          .catch(function () {
+            loadMore.textContent = originalText;
+            loadMore.classList.remove('is-loading');
+          });
+      });
+    }
+  }());
+</script>

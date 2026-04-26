@@ -1,0 +1,8 @@
+[quoted from Steve Brennan via email]
+The large modular synthesizer is a MIDI controller that controls the 'Arturia Modular V3' software synth. 4-off OpenDeck boards are used in the two top cabinets and other MIDI controller boards for the rest of the system including the 49 key keyboard.
+
+The other two synths are a MK1 (Black front panel) MIDI controller built into a 'Minimoog Model D' Walnut case, using a single OpenDeck controller board, one other controller plus the keyboard. The other synth, a MK2 version (Blue front panel), uses a single OpenDeck controller board plus the keyboard. Both instruments are designed to work with the 'Arturia Mini V3' software synth. The other Walnut case was made by myself.
+
+Although I am more of an Engineer than a musician, I do enjoy experimenting with electronic sounds and these instruments have been a pleasure to use over recent years and have been very reliable.
+
+All the above projects have been made a whole lot easier using your OpenDeck controller boards and I thank you for that.

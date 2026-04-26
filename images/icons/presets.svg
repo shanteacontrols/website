@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Uploaded to: SVG Find, www.svgfind.com, Generator: SVG Find Mixer Tools -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Presets</title>
+  <desc id="desc">Stacked preset cards with saved mapping lines.</desc>
+  <g fill="none" stroke="#2c3e50" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+    <rect x="18" y="14" width="34" height="38" rx="4" />
+    <path d="M12 20h6" />
+    <path d="M12 28h6" />
+    <path d="M12 36h6" />
+    <path d="M25 27h20" />
+    <path d="M25 37h13" />
+    <path d="m43 39 3 3 6-7" />
+  </g>
+</svg>

@@ -1,0 +1,2 @@
+[quoted from reelex on GitHub discussions]
+I was in urgent need of a midicontroller to play my VST-heavy music live and I just couldn't afford most of the stuff on the market and was also missing controllers with a higher resolution than 7bit. OpenDeck was the perfect solution for me and I will probably create a lot more Midi-Controllers with this method. So for this project I wanted as many rotary knobs with a high resolution on a build that is also as small as possible. And this is what I ended up with.

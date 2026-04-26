@@ -10,10 +10,19 @@ section.features-section {
 
   .features {
     margin-top: 80px;
+
+    @media (min-width: 992px) {
+      display: flex;
+      flex-wrap: wrap;
+    }
   }
 
   // Feature
   .feature {
+
+    @media (min-width: 992px) {
+      float: none;
+    }
 
     @media (max-width: 992px) {
       margin-bottom: 80px;
@@ -33,19 +42,22 @@ section.features-section {
         transition: all $transition-links $transition-links-type;
 
         .circle {
-          width: 50%;
-          padding-bottom: 50%;
+          width: 100%;
+          padding-bottom: 100%;
           border: 0;
-          background: $simple-gray;
+          background: transparent;
 
           i {
-            font-size: 3rem;
+            font-size: 7rem;
             color: $secondary;
-            transition: all $transition-links $transition-links-type;
-
             &:before {
-              padding-left: 3%;
+              padding-left: 0;
             }
+          }
+
+          .feature-svg {
+            width: 52%;
+            height: 52%;
           }
         }
       }
@@ -60,42 +72,48 @@ section.features-section {
         margin-bottom: 1.25rem;
       }
 
-      h3, p {
+      h3, h5 {
         transition: color $transition-links $transition-links-type;
       }
+
+      h5 {
+        font-size: 1.15rem;
+        line-height: 1.45;
+      }
     }
 
-    // Hover Mode
-    &:hover {
+  }
 
-      .icon {
-        .circle {
-          border-color: $simple-gray;
+  .features-extra-content {
+    margin-top: 70px;
+    color: $normal-gray;
+    text-align: center;
 
-          .circle {
-            background: $primary;
-
-            i {
-              color: $white;
-            }
-          }
-        }
-      }
-
-      .content {
-
-        h3 {
-          color: $primary;
-        }
-
-        p {
-          color: $secondary;
-        }
-
-      }
-
+    h2,
+    h3 {
+      color: $secondary;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
     }
 
+    p {
+      font-size: 1.35rem;
+      line-height: 1.6;
+    }
+
+    ul {
+      display: inline-block;
+      margin: 20px auto 0;
+      padding-left: 1.5rem;
+      text-align: left;
+    }
+
+    li {
+      color: $normal-gray;
+      font-size: 1.25rem;
+      line-height: 1.7;
+    }
   }
 
 }

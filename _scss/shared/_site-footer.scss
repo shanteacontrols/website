@@ -1,0 +1,98 @@
+@import "colors";
+@import "footer-text";
+
+footer.site-footer {
+  position: relative;
+  color: #999999;
+  background-color: #202020;
+  font-family: "Nunito", Arial, sans-serif;
+  letter-spacing: 0.08rem;
+  line-height: 1;
+  width: 100%;
+
+  p {
+    padding-bottom: 0;
+  }
+
+  .footer-info {
+    padding: 44px 0 32px;
+    margin: 0 auto;
+    text-align: center;
+
+    .footer-logo {
+      position: relative;
+
+      img {
+        display: block;
+        max-width: 360px;
+        width: 100%;
+        margin: 0 auto;
+      }
+    }
+
+    .footer-info-text {
+      font-size: 0.875rem;
+      padding: 18px 0;
+
+      p {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        margin-bottom: 0;
+
+        &:empty {
+          display: none;
+        }
+      }
+    }
+
+    .social-icons {
+      display: inline-block;
+      font-size: 2.6rem;
+      margin-top: 24px;
+
+      ol,
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      li {
+        float: left;
+        margin-right: 10px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
+      a {
+        color: #999999;
+
+        &:hover,
+        &:active {
+          color: $site-accent;
+        }
+      }
+
+      .social-icon-svg {
+        display: block;
+        width: 1em;
+        height: 1em;
+        fill: currentColor;
+      }
+    }
+  }
+
+  .footer-copyright {
+    font-size: 0.8125rem;
+    border-top: 1px solid #464646;
+    padding: 22px 0 18px;
+    margin: 0 auto;
+    @include footer-copyright-text;
+
+    a {
+      color: $site-accent;
+    }
+  }
+}

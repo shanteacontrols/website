@@ -7,6 +7,7 @@ const minify              = require('gulp-minifier');
 const size                = require('gulp-size');
 const { task }            = require('gulp');
 const del                 = require('del');
+const fs                  = require('fs');
 const jekyllPaths         = ['*.html', '_includes/*.html', '_includes/*/*.html', '_layouts/*.html', '_layouts/*/*.html', '_posts/*', 'js/*.js', 'images/*'];
 const outDirBase          = '_site/';
 const outDirCss           = outDirBase + 'css/';
@@ -26,14 +27,14 @@ const jsFilesBlog = [
   './js/blog/wow.min.js',
   './js/blog/prism.min.js',
   './js/blog/jquery.fitvids.js',
+  './js/shared-nav.js',
   './js/blog/blog.js'
 ];
 
 task('sassLanding', function() {
   return gulp.src(sassPathsLanding)
       .pipe(sass({
-        outputStyle: 'expanded',
-        onError: browserSync.notify('Error in sass')
+        outputStyle: 'expanded'
       }))
       .on('error', sass.logError)
       .pipe(prefix(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
@@ -63,7 +64,10 @@ task('cssBlogVendor', function() {
 });
 
 task('cssBlogApp', function() {
-  return gulp.src(outDirCss + 'blog/*.css')
+  return gulp.src([
+      outDirCss + 'blog/vendors.css',
+      outDirCss + 'blog/style.css'
+    ])
       .pipe(concat('app.css'))
       .pipe(gulp.dest(outDirCss + 'blog'))
       .pipe(size());
@@ -83,19 +87,35 @@ task('build', function() {
 });
 
 task('workarounds-cleanup', function(){
+  const sitemapPath = outDirBase + 'sitemap.xml';
+
+  if (fs.existsSync(sitemapPath)) {
+    const sitemap = fs.readFileSync(sitemapPath, 'utf8');
+    const filteredSitemap = sitemap.replace(
+      /<url>\s*<loc>https?:\/\/[^<]+\/blog\/pages\/\d+\/blog\.html<\/loc>[\s\S]*?<\/url>\s*/g,
+      ''
+    );
+    fs.writeFileSync(sitemapPath, filteredSitemap);
+  }
+
   //remove invalid index.html files generated for some reason for each tag
   return del(outDirBase + 'tag/*/index.html');
 });
 
 task('minify', function() {
-    return gulp.src('_site/**/*').pipe(minify({
+    return del(outDirBase + 'deploy').then(function() {
+      return gulp.src([
+        '_site/**/*',
+        '!_site/deploy',
+        '!_site/deploy/**'
+      ]).pipe(minify({
       minify: true,
       minifyHTML: {
         collapseWhitespace: true,
         conservativeCollapse: true,
       },
       minifyJS: {
-        sourceMap: true
+        sourceMap: false
       },
       minifyCSS: true,
       getKeptComment: function (content, filePath) {
@@ -103,6 +123,7 @@ task('minify', function() {
           return m && m.join('\n') + '\n' || '';
       }
     })).pipe(gulp.dest('_site/deploy'));
+    });
 });
 
 task('serve', function() {

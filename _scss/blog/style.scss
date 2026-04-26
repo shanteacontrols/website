@@ -25,9 +25,13 @@ CSS Index
 @import "base/variable";
 @import "base/prefix";
 @import "base/media_query";
+@import "../shared/load-more-button";
 @import "base/common";
 @import "base/main_menu";
 @import "base/ghost_fix";
+@import "../shared/post-tile";
+@import "../shared/footer-text";
+@import "../shared/site-footer";
 
 /* ################ 
 Bannner-Area CSS 
@@ -70,33 +74,26 @@ Bannner-Area CSS
   }
 }
 .main-content-area {
+  &.blog-listing-area {
+    padding-top: 36px;
+  }
+
   .blog-list {
     .list-block {
-      padding: 40px 50px;
-      margin-bottom: 42px;
+      @include post-tile-card;
 
       @include tablet {
         margin-bottom: 40px;
         padding: 30px;
       }
 
-      &:hover {
-        box-shadow: 0px -1px 20px 4px rgba(156, 202, 183, 0.27);
-      }
-      span {
-        font-size: 14px;
-        font-weight: 500;
-      }
-      h2 {
-        font-size: $h2-font-size;
-        line-height: 35px;
-        margin-bottom: 30px;
-        a {
-          color: $primary-link;
-          &:hover {
-            color: $hover;
-          }
-        }
+      @include post-tile-content("h2", "> span", $primary-color);
+      @include post-tile-read-more(".btn-read a");
+      @include post-tile-featured-label;
+
+      &:hover,
+      &:focus {
+        @include post-tile-read-more-active(".btn-read a");
       }
     }
     &:last-child {
@@ -105,71 +102,6 @@ Bannner-Area CSS
   }
   .blog-list {
     position: relative;
-    &:before {
-      position: absolute;
-      top: 0;
-      width: 1px;
-      height: 100%;
-      border: 1px solid #eae4e45c;
-      content: "";
-      left: -72px;
-      @include tablet {
-        opacity: 0;
-      }
-      @include desktop {
-        left: -97px;
-      }
-    }
-    .list-block {
-      position: relative;
-      border: 1px solid #eae4e45c;
-      box-shadow: 1px 1px 9px 0px rgba(156, 202, 183, 0.27);
-      &:before {
-        position: absolute;
-        top: 0;
-        left: -110px;
-        width: 75px;
-        height: 75px;
-        line-height: 75px;
-        background: $hover;
-        content: "3";
-        border-radius: 50%;
-        text-align: center;
-        color: #fff;
-        font-size: 35px;
-        @include desktop {
-          left: -134px;
-        }
-        @include tablet {
-          opacity: 0;
-          left: -134px;
-        }
-      }
-    }
-    .block-one:before {
-      background: $hover;
-      content: "01";
-    }
-    .block-two:before {
-      background: #d2a9fc;
-      content: "02";
-    }
-    .block-three:before {
-      background: #f8d86b;
-      content: "03";
-    }
-    .block-4:before {
-      background: #74cee7;
-      content: "04";
-    }
-    .block-5:before {
-      background: #fe6061;
-      content: "05";
-    }
-    .block-6:before {
-      background: #55efc4;
-      content: "06";
-    }
   }
 }
 /* ################ 
@@ -265,6 +197,7 @@ Footer-area Css Here
     }
   }
 }
+
 /* ################ 
 Post-content-area 
 ################ */
@@ -281,6 +214,21 @@ Post-content-area
 .post-content-area {
   .post-image img {
     max-width: 100%;
+  }
+  .entry-content {
+    a {
+      color: $site-accent;
+
+      &:hover {
+        color: $site-accent;
+      }
+    }
+  }
+  .post-end-divider {
+    width: 100%;
+    height: 5px;
+    margin: 55px 0 45px;
+    background: $site-accent;
   }
   .post-share-icon {
     margin-top: 40px;
@@ -304,7 +252,7 @@ Post-content-area
             display: block;
             color: #676767;
             &:hover {
-              color: $hover;
+              color: $site-accent;
             }
           }
         }
@@ -350,7 +298,7 @@ Post-content-area
       a {
         color: $primary-color;
         &:hover {
-          color: $hover;
+          color: $site-accent;
         }
       }
       i {
@@ -360,35 +308,48 @@ Post-content-area
     }
   }
   .categories-carousel {
-    .single-item {
-      border: 1px solid #e8eaed;
-      min-height: 260px;
-      background: #f5f5f5;
-      box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.03);
+    .section-header {
+      margin-bottom: 60px;
+
+      h2 {
+        color: $primary-color;
+        font-size: $h2-font-size;
+        font-weight: $font-bold;
+        text-transform: uppercase;
+      }
+
+      hr.normal {
+        margin: 40px auto 0;
+      }
     }
-    .categories-post-image {
-      position: relative;
-      .categories-post-hover {
-        padding: 15px;
-        .post-link {
-          text-align: left;
-          h3 {
-            line-height: 20px;
-            a {
-              font-size: 16px;
-              color: $primary-color;
-              font-weight: 400;
-            }
-          }
-          p {
-            color: #ffffff;
-          }
-          .btn-read a {
-            margin-top: 5px;
-            color: $hover;
-            font-weight: 500;
-          }
-        }
+
+    .related-post-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    .related-post-card {
+      @include post-tile-card;
+      background: #ffffff;
+      height: 100%;
+      margin-bottom: 0;
+      @include post-tile-content("h3", "> span", $primary-color);
+      @include post-tile-read-more(".btn-read a");
+      @include post-tile-featured-label;
+
+      @include tablet {
+        padding: 30px;
+      }
+
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        @include post-tile-read-more-active(".btn-read a");
+      }
+
+      h3 {
+        margin-top: 0;
       }
     }
   }
@@ -479,176 +440,6 @@ Comment area css
       &:focus {
         outline: 0;
       }
-    }
-  }
-}
-/* ################ 
-Right-sidebar Css 
-################ */
-.right-sidebar {
-  @include desktop {
-    margin-top: 60px;
-  }
-  @include tablet {
-    margin-top: 60px;
-  }
-  .sidebar-widget {
-    margin-bottom: 60px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-    .widget-title {
-      margin-bottom: 20px;
-    }
-    h3 {
-      font-size: $font-20;
-      font-weight: $font-bold;
-      margin: 0;
-      padding: 0;
-    }
-    form {
-      position: relative;
-      button {
-        border: none;
-        background: none;
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        cursor: pointer;
-        outline: 0;
-        color: #a9a1a1;
-      }
-    }
-    .widget-text {
-      .tags-link ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        li {
-          border-bottom: 1px solid #ecf0f1;
-          display: flex;
-          align-items: center;
-          padding: 10px 0;
-          &:first-child {
-            padding-top: 0;
-          }
-          &:last-child {
-            border-bottom: 0;
-            padding-bottom: 0;
-          }
-          a {
-            color: $primary-color;
-            margin-right: 10px;
-            &:hover {
-              color: $hover;
-            }
-          }
-        }
-      }
-    }
-    .social-network {
-      @include tablet {
-        margin-bottom: -8px;
-      }
-    }
-  }
-  .p-post-block {
-    display: flex;
-    border-bottom: 1px solid #ecf0f1;
-    padding: 20px 0;
-    &:first-child {
-      padding-top: 0;
-    }
-    &:last-child {
-      border-bottom: 0;
-      padding-bottom: 0;
-    }
-  }
-  .post-thum {
-    margin-right: 20px;
-    &:hover {
-      a:before {
-        opacity: 0.57;
-        transition: all 0.4s linear 0s;
-        transform: scale(1);
-        width: 100%;
-      }
-    }
-    a {
-      position: relative;
-      display: block;
-      &:before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 0;
-        height: 100%;
-        content: "";
-        background: #000;
-        opacity: 0;
-        transition: all 0.4s linear 0s;
-        transform: scale(0);
-        img {
-          max-width: 70px;
-          max-height: 70px;
-        }
-      }
-    }
-  }
-  .p-title {
-    h4 {
-      margin: 0;
-      line-height: 19px;
-      a {
-        font-size: 16px;
-        color: $primary-color;
-        &:hover {
-          color: $hover;
-        }
-      }
-    }
-  }
-  .social-network ul {
-    margin: 0;
-    padding: 0;
-    li {
-      display: inline-block;
-      float: left;
-      border: 1px solid #ecf0f1;
-      text-align: center;
-      padding: 10px 12px;
-      margin-bottom: 8px;
-      margin-right: 8px;
-      width: 88px;
-    }
-    @include tablet {
-      margin-right: 8px;
-    }
-    a {
-      display: block;
-      i {
-        font-size: 22px;
-      }
-    }
-    a.paste {
-      color: #1da1f3;
-      transition: all 0.4s linear 0s;
-      &:hover {
-        color: #096096;
-        transition: all 0.4s linear 0s;
-      }
-    }
-    a.blue {
-      color: #3a5a9a;
-      transition: all 0.4s linear 0s;
-      &:hover {
-        color: #192e58;
-        transition: all 0.4s linear 0s;
-      }
-    }
-    span {
-      display: block;
-      font-weight: $font-medium;
     }
   }
 }
@@ -850,99 +641,6 @@ Contact Guide Page
 }
 .form-title {
   margin-bottom: 20px;
-}
-
-.main-content-area .blog-list {
-  .block-0:before {
-    background: #f50057;
-    content: "0";
-  }
-  .block-1:before {
-    background: #fe6061;
-    content: "01";
-  }
-  .block-2:before {
-    background: #d2a9fc;
-    content: "02";
-  }
-  .block-3:before {
-    background: #f8d86b;
-    content: "03";
-  }
-  .block-4:before {
-    background: #74cee7;
-    content: "04";
-  }
-  .block-5:before {
-    background: #fe6061;
-    content: "05";
-  }
-  .block-6:before {
-    background: #55efc4;
-    content: "06";
-  }
-  .block-7:before {
-    background: #3b3b98;
-    content: "07";
-  }
-  .block-8:before {
-    background: #2c3a47;
-    content: "08";
-  }
-  .block-9:before {
-    background: #fc427b;
-    content: "09";
-  }
-  .block-10:before {
-    background: #b33771;
-    content: "10";
-  }
-}
-body.paged .main-content-area .blog-list {
-  .block-0:before {
-    background: #f50057;
-    content: "01";
-  }
-  .block-1:before {
-    background: #fe6061;
-    content: "02";
-  }
-  .block-2:before {
-    background: #d2a9fc;
-    content: "03";
-  }
-  .block-3:before {
-    background: #f8d86b;
-    content: "04";
-  }
-  .block-4:before {
-    background: #74cee7;
-    content: "05";
-  }
-  .block-5:before {
-    background: #fe6061;
-    content: "06";
-  }
-  .block-6:before {
-    background: #55efc4;
-    content: "07";
-  }
-  .block-7:before {
-    background: #3b3b98;
-    content: "08";
-  }
-  .block-8:before {
-    background: #2c3a47;
-    content: "09";
-  }
-  .block-9:before {
-    background: #fc427b;
-    content: "10";
-  }
-  .block-10:before {
-    background: #b33771;
-    content: "11";
-  }
 }
 
 .site-tag-archive > a {

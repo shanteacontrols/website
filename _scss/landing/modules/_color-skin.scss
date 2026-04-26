@@ -8,7 +8,7 @@
  *
  *
  *  ##### Theme Colors Primary
- *  $blue: #21c2f8;
+ *  $blue: $site-accent;
  *  $green: #2ecc71;
  *
  *  ##### Global Pallete
@@ -34,9 +34,10 @@
  *
  *
  **/
+@import "../../shared/colors";
 
 // Theme Colors
-$blue: #21c2f8;
+$blue: $site-accent;
 $green: #2ecc71;
 
 // Global Pallete

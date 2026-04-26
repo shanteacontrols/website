@@ -1,4 +1,11 @@
 <!-- Portfolio Section -->
+{% assign portfolio = site.gallery.portfolio %}
+{% assign portfolio_dir = portfolio.dir | default: 'images/portfolio' %}
+{% assign portfolio_image_extensions = '.jpg,.jpeg,.png,.gif,.webp' %}
+{% capture portfolio_info_paths %}{% for file in site.static_files %}{% assign extension = file.extname | downcase %}{% assign path_match = file.path | split: portfolio_dir %}{% if path_match.size > 1 and extension == '.txt' %}{% assign relative_path = path_match[1] | remove_first: '/' %}|{{ portfolio_dir }}/{{ relative_path }}|{% endif %}{% endfor %}{% endcapture %}
+{% capture portfolio_category_list %}{% for file in site.static_files %}{% assign extension = file.extname | downcase %}{% assign path_match = file.path | split: portfolio_dir %}{% assign relative_path = path_match[1] | remove_first: '/' %}{% assign relative_parts = relative_path | split: '/' %}{% if path_match.size > 1 and relative_parts.size > 1 and portfolio_image_extensions contains extension %}{{ relative_parts[0] }}|||{% endif %}{% endfor %}{% endcapture %}
+{% assign portfolio_categories = portfolio_category_list | split: '|||' | uniq | sort %}
+
 <section class="site-section portfolio-section" id="portfolio">
   <div class="container">
 
@@ -7,13 +14,13 @@
 
       <!-- Section Header -->
       <header class="col-md-8 col-md-push-2 col-sm-12 section-header">
-        <h2>{{ site.portfolio-title }}</h2>
+        <h2>{{ portfolio.title }}</h2>
         <hr class="normal">
       </header>
 
       <!-- Section Content -->
       <div class="col-md-8 col-md-push-2 col-sm-12 section-content">
-        <p>{{ site.portfolio-description }}</p>
+        <p>{{ portfolio.description }}</p>
       </div>
 
     </div>
@@ -23,8 +30,11 @@
         <div class="filter-menu">
           <ul>
             <li data-filter="all" class="current">All</li>
-            {% for item in site.portfolio-categories %}
-              <li data-filter="{{ item }}">{{ item }}</li>
+            {% for category in portfolio_categories %}
+              {% assign category = category | strip %}
+              {% if category != '' %}
+                <li data-filter="{{ category }}">{{ category }}</li>
+              {% endif %}
             {% endfor %}
           </ul>
         </div>
@@ -33,54 +43,49 @@
 
     <div id="gallery-container">
 
-      {% for item in site.portfolio %}
+      {% for file in site.static_files %}
+        {% assign extension = file.extname | downcase %}
+        {% assign path_match = file.path | split: portfolio_dir %}
+        {% assign relative_path = path_match[1] | remove_first: '/' %}
+        {% assign relative_parts = relative_path | split: '/' %}
+        {% if path_match.size > 1 and relative_parts.size > 1 and portfolio_image_extensions contains extension %}
+          {% assign category = relative_parts[0] %}
+          {% assign filename = relative_parts | last %}
+          {% assign title = filename | split: '.' | first | replace: '_', ' ' | replace: '-', ' ' | capitalize %}
+          {% assign image_path = portfolio_dir | append: '/' | append: relative_path %}
+          {% assign image_url = image_path | replace: ' ', '%20' | relative_url %}
+          {% assign info_path = image_path | replace: file.extname, '.txt' %}
+          {% assign info_token = '|' | append: info_path | append: '|' %}
+          {% assign has_info = false %}
+          {% if portfolio_info_paths contains info_token %}
+            {% assign has_info = true %}
+          {% endif %}
+          {% assign display_title = category %}
+          {% if has_info %}
+            {% assign display_title = title %}
+            {% assign info_url = info_path | replace: ' ', '%20' | relative_url %}
+          {% endif %}
 
-        <a  class="item"
-            data-src="{{ site.baseurl }}/images/portfolio/{{ item.image }}" 
-            data-categories="{% for category in item.categories %} {{ category }} {% endfor %}" 
-            data-sub-html="<h2>{{ item.title }}</h2> <h3>Category: {{ item.categories | first }}</h3>">
-          <img style="padding: 15px;" class="col-md-4 col-sm-6" src="{{ site.baseurl }}/images/portfolio/{{ item.image }}"/>
-        </a>
+          <a  class="item"
+              data-src="{{ image_url }}"
+              data-title="{{ display_title }}"
+              data-category="{{ category }}"
+              {% if has_info %}
+              data-info-src="{{ info_url }}"
+              {% endif %}
+              data-categories=" {{ category }} ">
+            <span class="img-wrap">
+              <img src="{{ image_url }}" alt="{{ title }}"/>
+            </span>
+          </a>
 
+        {% endif %}
       {% endfor %}
 
+    </div>
+    <div class="gallery-load-more-wrapper">
+      <button class="gallery-load-more" type="button" data-gallery-load-more="gallery-container">Load More</button>
     </div>
 
   </div>
 </section>
-
-<script>
-  (function(){
-    let filters = document.querySelectorAll('[data-filter]');
-    let items = document.querySelectorAll('[data-categories]');
-    Array.prototype.slice.call(filters).map( filter => {
-      filter.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        Array.prototype.slice.call(filters).map( filter => {
-          filter.classList.remove('current');
-        });
-        e.target.classList.add('current');
-
-        let filterQuery = e.target.dataset['filter'];
-        // show all
-        if( filterQuery == "all" ){
-          Array.prototype.slice.call(items).map( item => {
-            item.classList.remove('hidden');
-          });
-        }else{
-          Array.prototype.slice.call(items).map( item => {
-            // show
-            if( item.dataset.categories.indexOf(filterQuery) > -1 ){
-              item.classList.remove('hidden');
-            }
-            // hide
-            else{
-              item.classList.add('hidden');
-            }
-          })
-        }
-      })
-    });
-  }())
-</script>

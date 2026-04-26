@@ -1,3 +1,8 @@
+{% assign boards = site.gallery.boards %}
+{% assign boards_dir = boards.dir | default: 'images/boards' %}
+{% assign boards_image_extensions = '.jpg,.jpeg,.png,.gif,.webp' %}
+{% capture boards_info_paths %}{% for file in site.static_files %}{% assign extension = file.extname | downcase %}{% assign path_match = file.path | split: boards_dir %}{% if path_match.size > 1 and extension == '.txt' %}{% assign relative_path = path_match[1] | remove_first: '/' %}|{{ boards_dir }}/{{ relative_path }}|{% endif %}{% endfor %}{% endcapture %}
+
 <section class="site-section portfolio-section" id="boards">
   <div class="container">
 
@@ -6,29 +11,59 @@
 
       <!-- Section Header -->
       <header class="col-md-8 col-md-push-2 col-sm-12 section-header">
-        <h2>{{ site.boards-title }}</h2>
+        <h2>{{ boards.title }}</h2>
         <hr class="normal">
       </header>
 
       <!-- Section Content -->
       <div class="col-md-8 col-md-push-2 col-sm-12 section-content">
-        <p>{{ site.boards-description }}</p>
+        <p>{{ boards.description }}</p>
       </div>
 
     </div>
 
     <div id="board-container">
 
-      {% for item in site.boards %}
+      {% for file in site.static_files %}
+        {% assign extension = file.extname | downcase %}
+        {% assign path_match = file.path | split: boards_dir %}
+        {% if path_match.size > 1 and boards_image_extensions contains extension %}
+          {% assign relative_path = path_match[1] | remove_first: '/' %}
+          {% assign filename = relative_path | split: '/' | last %}
+          {% assign title = filename | split: '.' | first | replace: '_', ' ' | replace: '-', ' ' | capitalize %}
+          {% assign image_path = boards_dir | append: '/' | append: relative_path %}
+          {% assign image_url = image_path | replace: ' ', '%20' | relative_url %}
+          {% assign info_path = image_path | replace: file.extname, '.txt' %}
+          {% assign info_token = '|' | append: info_path | append: '|' %}
+          {% assign has_info = false %}
+          {% if boards_info_paths contains info_token %}
+            {% assign has_info = true %}
+          {% endif %}
+          {% assign display_title = boards.title %}
+          {% if has_info %}
+            {% assign display_title = title %}
+            {% assign info_url = info_path | replace: ' ', '%20' | relative_url %}
+          {% endif %}
 
         <a  class="board"
-            data-src="{{ site.baseurl }}/images/boards/{{ item.image }}" 
-            data-sub-html="<h2>{{ item.title }}</h2>">
-          <img style="padding: 15px;" class="col-md-4 col-sm-6" src="{{ site.baseurl }}/images/boards/{{ item.image }}"/>
+            data-src="{{ image_url }}"
+            data-title="{{ display_title }}"
+            {% if has_info %}
+            data-info-src="{{ info_url }}"
+            {% endif %}
+            data-category="Supported boards">
+          <span class="img-wrap">
+            <img src="{{ image_url }}" alt="{{ title }}"/>
+          </span>
         </a>
+
+        {% endif %}
 
       {% endfor %}
 
+    </div>
+    <div class="gallery-load-more-wrapper">
+      <button class="gallery-load-more" type="button" data-gallery-load-more="board-container">Load More</button>
     </div>
 
   </div>

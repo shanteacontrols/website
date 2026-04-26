@@ -11,13 +11,39 @@ section.offer-section {
   color: $white;
   background-color: $primary;
 
+  .container {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .offer-copy,
+  .offer-action {
+    float: none;
+  }
+
+  .offer-copy {
+    text-align: center;
+  }
+
+  .offer-action {
+    display: flex;
+    justify-content: center;
+  }
+
   h2 {
     text-transform: uppercase;
     font-size: 1.75rem;
     padding: 1.125rem 0;
+    text-align: center;
   }
 
   @media (max-width: 992px) {
+    .container {
+      display: block;
+    }
+
     h2 {
       text-align: center;
       line-height: 1.4;

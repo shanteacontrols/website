@@ -1,0 +1,12 @@
+<ul class="menu">
+  <li><a href="{{ site.baseurl }}/#about">ABOUT</a></li>
+  <li><a href="{{ site.baseurl }}/#features">FEATURES</a></li>
+  <li><a href="{{ site.baseurl }}/#boards">BOARDS</a></li>
+  <li><a href="{{ site.baseurl }}/#portfolio">GALLERY</a></li>
+  <li><a href="{{ site.baseurl }}/#dubfocus16">DUBFOCUS 16</a></li>
+  <li><a href="{{ site.baseurl }}/#testimonials">TESTIMONIALS</a></li>
+  <li{% if page.url contains '/blog/' or page.collection == 'posts' or page.layout == 'post' %} class="current-menu-item"{% endif %}>
+    <a href="{% if page.url contains '/blog/' or page.collection == 'posts' or page.layout == 'post' %}{{ site.baseurl }}/blog/blog.html{% else %}{{ site.baseurl }}/#blog{% endif %}">BLOG</a>
+  </li>
+  <li><a href="{{ site.baseurl }}/#contact">CONTACT</a></li>
+</ul>

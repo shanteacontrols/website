@@ -26,48 +26,6 @@
     $('.page-loader').addClass('load-complete');
 
     /**
-     *  Parallax with Scrollax.js - Initialization
-     **/
-    'use strict';
-    $.Scrollax();
-
-    /**
-     *  Main Menu Navigation
-     **/
-    var $body = $('body');
-    var $nav_menu = $('.navigation-bar');
-    var $nav_menu_link = $('#navMenu ul li a');
-    var $toggle_menu_button = $('.navTrigger');
-
-    // Navigation Menu Link
-    $nav_menu_link.on('click', function() {
-
-      // Select Current Navigation Item
-      $nav_menu_link.parent().removeClass('current-menu-item');
-      $(this).parent().addClass('current-menu-item');
-
-      // Close Mobile Menu
-      $nav_menu.removeClass('active');
-      $toggle_menu_button.removeClass('active');
-      $body.removeClass('no-scroll');
-
-    });
-
-    // Toggle Mobile Menu
-    $toggle_menu_button.on('click', function() {
-      $nav_menu.toggleClass('active');
-      $body.toggleClass('no-scroll');
-      $(this).toggleClass('active');
-    });
-
-    // Remove all classes on window resize
-    $window.on('resize', function() {
-      $nav_menu.removeClass('active');
-      $body.removeClass('no-scroll');
-      $toggle_menu_button.removeClass('active');
-    });
-
-    /**
      *  Scroll Event
      **/
     $window.scroll(function() {
@@ -89,15 +47,49 @@
     });
 
     /**
+     *  Header Carousel Setup
+     **/
+    var $headerCarousel = $("#header-carousel");
+
+    if ($headerCarousel.length) {
+      $headerCarousel.owlCarousel({
+
+          navigation : false,
+          slideSpeed : 600,
+          paginationSpeed : 600,
+          autoPlay: 5000,
+          stopOnHover: false,
+          singleItem: true,
+          pagination: true,
+          mouseDrag: false,
+          touchDrag: false
+
+      });
+    }
+
+    /**
      *  Testimonials Carousel Setup
      **/
-    $("#testimonials-carousel").owlCarousel({
+    var $testimonialsCarousel = $("#testimonials-carousel");
 
-        navigation : true, // Show next & prev buttons
+    $testimonialsCarousel.owlCarousel({
+
+        navigation : false,
         slideSpeed : 300,
         paginationSpeed : 400,
+        autoPlay: 6000,
+        stopOnHover: true,
         singleItem: true
 
+    });
+
+    window.bindHorizontalStepNavigation($testimonialsCarousel[0], {
+      onNext: function() {
+        $testimonialsCarousel.trigger('owl.next');
+      },
+      onPrev: function() {
+        $testimonialsCarousel.trigger('owl.prev');
+      }
     });
 
     /**

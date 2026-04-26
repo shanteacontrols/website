@@ -77,15 +77,15 @@
     <link rel="stylesheet" href="{{site.baseurl}}/css/blog/app.css" />
     <!-- endgulp -->
     <link
-      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600"
+      href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700"
       rel="stylesheet"
     />
   </head>
-  {% include header-post.html %}
   <body
     class="{% if page.layout == 'post' %} post-template {% endif %} {% if page.layout == 'tag' %} tag-template {% endif %} {% if page.permalink %} page-template {% endif %}"
   >
-    {{content}} {% include footer-blog.html %}
+    {% include header-post.html %}
+    {{content}} {% include footer-landing.html %}
     <script src="{{site.baseurl}}/js/blog/build.js"></script>
   </body>
 </html>

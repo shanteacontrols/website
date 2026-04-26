@@ -4,7 +4,7 @@
 #
 
 # Information for compile
-exclude: ["node_modules", "gulpfile.js", "package.json", "Gemfile", "README.md", "vendor", "gems"]
+exclude: ["node_modules", "opendeck-ui", "gulpfile.js", "package.json", "Gemfile", "README.md", "vendor", "gems", "documentation"]
 keep_files: ["css", "images"]
 
 #
@@ -30,18 +30,10 @@ smooth-scroll: false
 ###########   Plugins    ###########
 ####################################
 plugins:
-  - jekyll-feed
   - jekyll-paginate-v2
-  - jekyll-archives
   - jekyll-sitemap
 
 permalink: /:year/:month/:day/:title/
-
-jekyll-archives:
-  enabled: all
-  layout: category
-  permalinks:
-    category: '/category/:name/'
 
 pagination:
   enabled: true
@@ -61,18 +53,6 @@ pagination:
   extension: 'html'
   indexpage: 'blog'
 
-autopages:
-  enabled: true
-  tags:
-    layouts: 
-      - 'tag.html'
-    title: '#:tag'
-    permalink: '/tag/:tag'
-
-tag_page_layout: tag
-tag_page_dir: tag
-tag_permalink_style: pretty
-
 #######################################################
 #######################################################
 ###############   HEADER INFORMATIONS   ###############
@@ -87,7 +67,6 @@ lang: en-US
 header-title: Plug and play. <strong>REALLY</strong>.
 # Header Tagline
 header-tagline: OpenDeck DIY MIDI platform
-blog-desc: Shantea Controls Blog
 
 ####################################
 ######   CTA Header Buttons   ######
@@ -96,7 +75,7 @@ blog-desc: Shantea Controls Blog
 # Focus Buttons
 header-focus-button:
   title: Buy now
-  url: https://www.tindie.com/stores/paradajz/
+  url: https://lectronz.com/products/opendeck-l/
 
 # Secondary Buttons
 header-secondary-button:
@@ -106,7 +85,6 @@ header-secondary-button:
 ####################################
 ######  Global Social Links   ######
 ####################################
-youtube: 'https://youtube.com/shanteacontrols'
 facebook: 'https://www.facebook.com/shanteacontrolsmidi'
 github: 'https://github.com/shanteacontrols/OpenDeck'
 
@@ -114,14 +92,7 @@ github: 'https://github.com/shanteacontrols/OpenDeck'
 #############   About   #############
 #####################################
 about-title: Build MIDI controllers with ease
-about-description: Instead of spending time on circuit design, programming, and solving lots of unnecessary problems, simply connect components of your MIDI controller into OpenDeck board and you’re done.
-
-#####################################
-#############   Configurator   #############
-#####################################
-configurator-title: Extreme configurability
-configurator-description: Additional board configuration can be done online  – no installation of extra software is necessary!
-
+about-description: Instead of spending time on circuit design, programming, and solving lots of unnecessary problems, simply connect the components of your MIDI controller to an OpenDeck board and you're done. The web configurator allows for unparalleled customization of every aspect of your MIDI controller.
 
 #####################################
 #############  Features  ############
@@ -134,299 +105,77 @@ features-description: OpenDeck is the most featureful and configurable MIDI plat
 #
 features:
 
-- title: Simple
-  description: Simplicity is a feature.
-  icon: pe-7s-smile
-
-- title: Universally supported
-  description: Windows, macOS, Linux, Android, iOS. Any MIDI supported DAW or DJ software.
-  icon: pe-7s-smile
-
-- title: Online configurator
-  description: Configure your controller in web browser. No installation required.
-  icon: pe-7s-smile
-
-- title: Open source
-  description: 100% open-source and open-hardware
-  icon: pe-7s-smile
-
-- title: Custom board support
-  description: Easily add support for yours!
-  icon: pe-7s-smile
-
-- title: BLE MIDI
-  description: Bluetooth Low Energy MIDI available on selected boards.
-  icon: pe-7s-smile
-
-- title: Inputs
-  description: Buttons, potentiometers, FSRs, encoders
-  icon: pe-7s-smile
-
-- title: Outputs
-  description: Single color and RGB LEDs
-  icon: pe-7s-smile
-
-- title: Touchscreen support
-  description: All Nextion and Stone HMI models
-  icon: pe-7s-smile
+- title: USB MIDI
+  description: No drivers required
+  svg: icons/usb-midi.svg
 
 - title: DIN MIDI
   description: Connect synths and other gear
-  icon: pe-7s-smile
+  svg: icons/din-midi.svg
 
-- title: USB MIDI
-  description: No drivers required
-  icon: pe-7s-smile
+- title: BLE MIDI
+  description: Bluetooth Low Energy MIDI available on selected boards.
+  svg: icons/ble-midi.svg
 
-- title: MIDI configuration
-  description: Configurable MIDI channels and messages
-  icon: pe-7s-smile
+- title: Universally supported
+  description: Windows, macOS, Linux, Android, iOS.
+  svg: icons/universally-supported.svg
 
-- title: Presets
-  description: Up to 10 individual mappings
-  icon: pe-7s-smile
-
-- title: 14-bit support
-  description: Pitch bend, high-resolution CC and NRPN support
-  icon: pe-7s-smile
+- title: Online configurator
+  description: Configure your controller in web browser. No installation required.
+  svg: icons/online-configurator.svg
 
 - title: Firmware updates in browser
   description: Update your board with new features
-  icon: pe-7s-smile
+  svg: icons/firmware-updates-browser.svg
+
+- title: Custom board support
+  description: Easily add support for yours!
+  svg: icons/custom-board-support.svg
+
+- title: Inputs
+  description: Buttons, potentiometers, FSRs, encoders
+  svg: icons/inputs.svg
+
+- title: Outputs
+  description: Single color and RGB LEDs
+  svg: icons/outputs.svg
+
+- title: Touchscreen support
+  description: All Nextion models
+  svg: icons/touchscreen-support.svg
+
+- title: Presets
+  description: Up to 10 individual mappings
+  svg: icons/presets.svg
+
+- title: 14-bit support
+  description: Pitch bend, high-resolution CC and NRPN support
+  svg: icons/fourteen-bit-support.svg
 
 #####################################
-############  Portfolio  ############
+############  Gallery  ############
 #####################################
-portfolio-title: Built with OpenDeck
-portfolio-description: Check the examples below and see what is possible with OpenDeck.
-
-#
-# Portfolio Grid
-#
-portfolio-categories: [Shantea Controls, DubFocus, Bergamot, Rooibos, User made]
-portfolio:
-
-- title: Cardamom
-  categories: [Shantea Controls]
-  image: cardamom.jpg
-
-- title: Bergamot
-  categories: [Shantea Controls, Bergamot]
-  image: bergamot.jpg
-
-- title: Bergamot
-  categories: [Shantea Controls, Bergamot]
-  image: bergamot_2.jpg
-
-- title: Bergamot
-  categories: [Shantea Controls, Bergamot]
-  image: bergamot_3.jpg
-
-- title: Bergamot
-  categories: [Shantea Controls, Bergamot]
-  image: bergamot_4.jpg
-
-- title: Bergamot
-  categories: [Shantea Controls, Bergamot]
-  image: bergamot_5.jpg
-
-- title: Rooibos
-  categories: [Shantea Controls, Rooibos]
-  image: rooibos_2.jpg
-
-- title: Rooibos
-  categories: [Shantea Controls, Rooibos]
-  image: rooibos_3.jpg
-
-- title: DubFocus 12
-  categories: [Shantea Controls, DubFocus]
-  image: df12.jpg
-
-- title: DubFocus 12
-  categories: [Shantea Controls, DubFocus]
-  image: df12_2.jpg
-
-- title: DubFocus 12
-  categories: [Shantea Controls, DubFocus]
-  image: df12_3.jpg
-
-- title: DubFocus 12
-  categories: [Shantea Controls, DubFocus]
-  image: df12_4.jpg
-
-- title: DubFocus 12
-  categories: [Shantea Controls, DubFocus]
-  image: df12_5.jpg
-
-- title: DubFocus 12
-  categories: [Shantea Controls, DubFocus]
-  image: df12_6.jpg
-
-- title: DubFocus 16
-  categories: [Shantea Controls, DubFocus]
-  image: df16.jpg
-
-- title: DubFocus 16
-  categories: [Shantea Controls, DubFocus]
-  image: df16_2.jpg
-
-- title: DubFocus 16
-  categories: [Shantea Controls, DubFocus]
-  image: df16_3.jpg
-
-- title: DubFocus 16
-  categories: [Shantea Controls, DubFocus]
-  image: df16_4.jpg
-
-- title: Made for Jamiel Allen
-  categories: [Shantea Controls]
-  image: jamiel.jpg
-
-- title: Made for Jamiel Allen
-  categories: [Shantea Controls]
-  image: jamiel_2.jpg
-
-- title: Built by Michael LaChance
-  categories: [User made]
-  image: lachance.jpg
-
-- title: Built by Rich Parker
-  categories: [User made]
-  image: parker.jpg
-
-- title: Built by Chad Kettering
-  categories: [User made]
-  image: chad.jpg
-
-- title: Built by Morten Berthelsen
-  categories: [User made]
-  image: morten.jpg
-
-- title: Built by reelex
-  categories: [User made]
-  image: reelex-32-buttons.jpg
-
-- title: Built by reelex
-  categories: [User made]
-  image: reelex-64-pots.jpg
-
-- title: Built by n3wkular
-  categories: [User made]
-  image: n3wkular.jpg
-
-boards-title: Supported boards
-boards-description: Not only does the firmware run on official board, it also supports Arduino Mega, STM32F4 Black Pill and many other boards. Still feeling limited? Firmware supports defining your own board variants as well.
-
-boards:
-
-- title: STM32F4 Black Pill
-  image: blackpill.jpg
-
-- title: STM32407 Discovery
-  image: discovery.jpg
-
-- title: Arduino Mega2560
-  image: mega2560.jpg
-
-- title: Mega2560 Mini
-  image: mega2560_mini.jpg
-
-- title: STM32F4VE
-  image: stm32f4ve.jpg
-
-- title: Teensy++ 2.0
-  image: teensy2pp.jpg
-
-- title: TPyBoard
-  image: tpyboard.jpg
-
-- title: Waveshare Core405R
-  image: ws405r.jpg
-
-- title: Waveshare Core407I
-  image: ws407i.jpg
-
-- title: Waveshare Core405V
-  image: ws407v.jpg
-
-- title: Adafruit ItsyBitsy nRF52840 Express
-  image: itsybitsy52840.jpg
-
-- title: Nordic Semiconductor nRF52840DK
-  image: nRF52840_dk.jpg
-
-core-title-od2: OpenDeck M board specifications
-core-description-od2: Loaded with I/O in compact form. 10cm x 10cm. Small, medium or large size project, OpenDeck board has you covered.
-
-core-features-left-od2:
-- name: Digital inputs
-  description: 64 inputs for buttons or 32 for encoders
-  icon: pe-7s-power
-
-- name: Outputs
-  description: 48 single color-LEDs or 16 RGB LEDs
-  icon: pe-7s-light
-
-- name: UART
-  description: Support for any Nextion and Stone HMI screen
-  icon: pe-7s-crop
-
-core-features-right-od2:
-- name: Analog inputs
-  description: 32 inputs with support for buttons
-  icon: pe-7s-edit
-
-- name: USB MIDI
-  description: Class compliant. No drivers required.
-  icon: pe-7s-usb
-
-- name: DIN MIDI
-  description: In and out
-  icon: pe-7s-musiclist
-
-- name: I2C for OLED display
-  description: SSD1306 controller support
-  icon: pe-7s-monitor
-
-core-title-od3: OpenDeck L board specifications
-core-description-od3: For that extra push over the cliff. Now with Bluetooth support.
-
-core-features-left-od3:
-- name: Digital inputs
-  description: 128 inputs for buttons or 64 for encoders
-  icon: pe-7s-power
-
-- name: Outputs
-  description: 64 single color-LEDs or 16 RGB LEDs
-  icon: pe-7s-light
-
-- name: UART
-  description: Support for any Nextion and Stone HMI screen
-  icon: pe-7s-crop
-
-core-features-right-od3:
-- name: Analog inputs
-  description: 64 inputs with support for buttons
-  icon: pe-7s-edit
-
-- name: USB MIDI
-  description: Class compliant. No drivers required.
-  icon: pe-7s-usb
-
-- name: DIN MIDI
-  description: In and out
-  icon: pe-7s-musiclist
-
-- name: I2C for OLED display
-  description: SSD1306 controller support
-  icon: pe-7s-monitor
+gallery:
+  portfolio:
+    title: Built with OpenDeck
+    description: Check the examples below and see what is possible with OpenDeck.
+    dir: images/portfolio
+  boards:
+    title: Supported boards
+    description: OpenDeck firmware runs on the official OpenDeck board and a growing set of supported development boards. Still feeling limited? Firmware supports defining your own board variants as well.
+    dir: images/boards
+  dubfocus16:
+    title: DubFocus 16
+    description: A custom OpenDeck-powered controller designed by Shantea Controls especially with dub producers in mind. 16 channels, high quality ALPS pots and faders, 32 Omron buttons with integrated red LEDs and USB-C connection. Contact for details on pricing and availability.
+    dir: images/dubfocus
 
 
 #####################################
 ########### Testimonials ############
 #####################################
 testimonials-title: Testimonials
-testimonials-description: Users just love OpenDeck. But don't take my word for it.
+testimonials-description: Users just love OpenDeck, but don't take my word for it.
 
 #
 # Testimonials
@@ -434,43 +183,27 @@ testimonials-description: Users just love OpenDeck. But don't take my word for i
 testimonials:
 
 - name: Liam Lacey
-  url: https://ask.audio/articles/review-shantea-controls-opendeck-custom-midi-controller-platform
-  url-text: ask.audio
   cite: "(...) the most affordable and flexible platform for building your own custom MIDI controllers."
 
 - name: Steve
-  url: https://www.tindie.com/products/paradajz/opendeck-diy-midi-platform-m/
-  url-text: Tindie review
-  cite: "The new interface is a triumph of usability and make configuring the controllers very easy indeed. In my opinion, this is the best MIDI controller available"
+  cite: "The new interface is a triumph of usability and makes configuring controllers very easy indeed. In my opinion, this is the best MIDI controller available."
 
 - name: Manuel
-  url: https://www.tindie.com/products/paradajz/opendeck-diy-midi-platform-m/
-  url-text: Tindie review
   cite: "It's the pointy, finished and perfect board for all your DIY MIDI"
 
 - name: Ben Garland
-  url: https://www.tindie.com/products/paradajz/opendeck-diy-midi-platform-m/
-  url-text: Tindie review
   cite: "OpenDeck makes me excited for MIDI controllers like never before. It takes just a few MINUTES to get up and running with OpenDeck! It's literally plug and PLAY!"
 
 - name: Scott Koopmann
-  url: 
-  url-text: Review sent via contact form
   cite: "OpenDeck is the future of DIY MIDI controller builds. Hands down"
 
 - name: David Dyball
-  url: 
-  url-text: Review sent via contact form
-  cite: "I’m just blown away with how amazing this is. The web interface is super simple and really smooth to use."
+  cite: "I'm just blown away with how amazing this is. The web interface is super simple and really smooth to use."
 
 - name: Barry Limestone
-  url: 
-  url-text: Review sent via contact form
   cite: "Literally the greatest product related to MIDI controls I have ever seen"
 
 - name: Andrey
-  url: 
-  url-text: Review sent via contact form
   cite: "wow it works right out of the box, impressive"
 
 
@@ -484,12 +217,12 @@ blog-description:
 ############   Contact   ############
 #####################################
 contact-title: Contact
-contact-description: Want to know more about OpenDeck? Interested in custom MIDI controller? Send a message (English please)!
+contact-description: Want to know more about OpenDeck? Interested in a custom MIDI controller? Send a message (English please)!
 
 #####################################
 #############   Footer   ############
 #####################################
 footer-description: 
 footer-copyright-text: Shantea Controls
-footer-copyright-url: https://shanteacontrols.com/
-footer-copyright-year: 2022
+footer-copyright-year: 2026
+footer-location: Zagreb, Croatia
