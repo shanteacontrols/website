@@ -148,6 +148,7 @@
             items: [],
             index: 0,
             touchStartX: 0,
+            touchStartY: 0,
             dragOffset: 0,
             dragDirection: 0,
             incomingIndex: null,
@@ -168,41 +169,43 @@
         viewer.addEventListener('wheel', function(event) {
             event.preventDefault();
 
-            if (isMobileGalleryViewer()) {
+            if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) {
                 return;
             }
 
-            if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
-                trackGalleryWheelSpeed(galleryViewer.dragOffset - event.deltaX);
-                dragGalleryImage(galleryViewer.dragOffset - event.deltaX, true);
-            }
+            trackGalleryWheelSpeed(galleryViewer.dragOffset - event.deltaX);
+            dragGalleryImage(galleryViewer.dragOffset - event.deltaX, true);
         }, { passive: false });
 
         viewer.addEventListener('touchstart', function(event) {
-            if (isMobileGalleryViewer()) {
-                return;
-            }
-
             galleryViewer.touchStartX = event.changedTouches[0].clientX;
+            galleryViewer.touchStartY = event.changedTouches[0].clientY;
             galleryViewer.dragOffset = 0;
         }, { passive: true });
 
         viewer.addEventListener('touchmove', function(event) {
-            if (isMobileGalleryViewer()) {
+            var distance = event.changedTouches[0].clientX - galleryViewer.touchStartX;
+            var verticalDistance = event.changedTouches[0].clientY - galleryViewer.touchStartY;
+
+            if (event.cancelable) {
+                event.preventDefault();
+            }
+
+            if (Math.abs(distance) <= Math.abs(verticalDistance)) {
                 return;
             }
 
-            var distance = event.changedTouches[0].clientX - galleryViewer.touchStartX;
             dragGalleryImage(distance, false);
-        }, { passive: true });
+        }, { passive: false });
 
         viewer.addEventListener('touchend', function(event) {
-            if (isMobileGalleryViewer()) {
-                resetGalleryImagePosition(false);
+            var distance = event.changedTouches[0].clientX - galleryViewer.touchStartX;
+            var verticalDistance = event.changedTouches[0].clientY - galleryViewer.touchStartY;
+
+            if (Math.abs(distance) <= Math.abs(verticalDistance)) {
+                resetGalleryImagePosition(true);
                 return;
             }
-
-            var distance = event.changedTouches[0].clientX - galleryViewer.touchStartX;
 
             if (Math.abs(distance) > getGalleryDragThreshold()) {
                 slideGalleryImage(distance < 0 ? 1 : -1);
@@ -303,19 +306,19 @@
             return 400;
         }
 
-        return getGalleryDragLimit() * 0.5;
+        return getGalleryDragLimit() * (isMobileGalleryViewer() ? 0.28 : 0.5);
     }
 
     function getGalleryWheelCommitThreshold() {
-        return getGalleryDragLimit() * 0.88;
+        return getGalleryDragLimit() * (isMobileGalleryViewer() ? 0.45 : 0.88);
     }
 
     function getGalleryWheelFastCommitThreshold() {
-        return getGalleryDragLimit() * 0.45;
+        return getGalleryDragLimit() * (isMobileGalleryViewer() ? 0.25 : 0.45);
     }
 
     function getGalleryWheelFastVelocity() {
-        return 1.8;
+        return isMobileGalleryViewer() ? 1.2 : 1.8;
     }
 
     function getGalleryDragCommitLimit() {
@@ -323,7 +326,7 @@
             return 760;
         }
 
-        return getGalleryDragLimit() * 0.95;
+        return getGalleryDragLimit() * (isMobileGalleryViewer() ? 0.75 : 0.95);
     }
 
     function getGalleryMotionDuration(distance, velocity, fallback) {
