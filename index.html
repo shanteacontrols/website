@@ -168,6 +168,10 @@
         viewer.addEventListener('wheel', function(event) {
             event.preventDefault();
 
+            if (isMobileGalleryViewer()) {
+                return;
+            }
+
             if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
                 trackGalleryWheelSpeed(galleryViewer.dragOffset - event.deltaX);
                 dragGalleryImage(galleryViewer.dragOffset - event.deltaX, true);
@@ -175,16 +179,29 @@
         }, { passive: false });
 
         viewer.addEventListener('touchstart', function(event) {
+            if (isMobileGalleryViewer()) {
+                return;
+            }
+
             galleryViewer.touchStartX = event.changedTouches[0].clientX;
             galleryViewer.dragOffset = 0;
         }, { passive: true });
 
         viewer.addEventListener('touchmove', function(event) {
+            if (isMobileGalleryViewer()) {
+                return;
+            }
+
             var distance = event.changedTouches[0].clientX - galleryViewer.touchStartX;
             dragGalleryImage(distance, false);
         }, { passive: true });
 
         viewer.addEventListener('touchend', function(event) {
+            if (isMobileGalleryViewer()) {
+                resetGalleryImagePosition(false);
+                return;
+            }
+
             var distance = event.changedTouches[0].clientX - galleryViewer.touchStartX;
 
             if (Math.abs(distance) > getGalleryDragThreshold()) {
@@ -195,6 +212,10 @@
         }, { passive: true });
 
         return galleryViewer;
+    }
+
+    function isMobileGalleryViewer() {
+        return window.matchMedia && window.matchMedia('(max-width: 900px)').matches;
     }
 
     function getWrappedGalleryIndex(index) {

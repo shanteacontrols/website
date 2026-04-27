@@ -25,4 +25,26 @@ prod: $(INSTALL_INDICATOR)
 	@source $(ENV_FILE) && \
 	bundle exec gulp prod
 
-.PHONY: install dev prod
+post:
+	@title="$(TITLE)"; \
+	if [[ -z "$$title" ]]; then \
+		echo 'Usage: make post TITLE="Post title"'; \
+		exit 1; \
+	fi; \
+	date=$$(date +"%Y-%m-%d"); \
+	time=$$(date +"%H:%M"); \
+	filename="_posts/$${date}-$${title}.md"; \
+	printf '%s\n' \
+		'---' \
+		'layout: post' \
+		"title: \"$$title\"" \
+		"date: $$date $$time" \
+		'categories: [News]' \
+		'tags: [news]' \
+		'image: "post_default_header.jpg"' \
+		'comments: true' \
+		'---' \
+		'' > "$$filename"; \
+	echo "Created $$filename"
+
+.PHONY: install dev prod post
