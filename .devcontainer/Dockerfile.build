@@ -1,69 +1,69 @@
 FROM ubuntu:24.04
 
 ARG project_dir=/home/ubuntu/project
-ARG deps_dir=/home/ubuntu/deps
 ARG ruby_version=3.1.4
-ARG node_version=16.13.2
-
-ENV RUBY_VERSION=${ruby_version}
-ENV NODE_VERSION=${node_version}
-ENV NVM_DIR="${deps_dir}/nvm"
+ARG node_version=24.15.0
+ARG nvm_version=0.40.4
 
 RUN \
 apt-get update && \
 DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
+build-essential \
+ca-certificates \
 curl \
 git \
-ca-certificates \
-build-essential \
+make \
 openssh-client \
 sudo \
+wine-stable \
+zip \
 zlib1g-dev
+
+# Workaround for electron packager
+RUN \
+echo -e '#!/bin/bash\nwine "$@"' > /usr/bin/wine64 && \
+chmod +x /usr/bin/wine64
 
 # Disable password prompt for sudo commands
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
+# Run everything below as $user
 USER ubuntu
 WORKDIR ${project_dir}
 
 RUN \
-mkdir -p ${deps_dir}/scripts && \
-mkdir -p $NVM_DIR
-
-RUN \
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+cd && \
+git clone https://github.com/nvm-sh/nvm && \
+cd nvm && \
+git checkout v${nvm_version} && \
+./install.sh && \
+cd .. && \
+rm -rf nvm
 
 RUN \
 curl -sSL https://get.rvm.io | bash -s stable && \
 /home/ubuntu/.rvm/bin/rvm install ${ruby_version}
 
-COPY \
-Makefile \
-Gemfile \
-Gemfile.lock \
-package.json \
-package-lock.json \
-${deps_dir}
-
-COPY \
-scripts/env_setup.sh \
-${deps_dir}/scripts
+ENV RUBY_VERSION=${ruby_version}
+ENV NODE_VERSION=${node_version}
+ENV NVM_DIR=/home/ubuntu/.nvm
+ENV PATH=/home/ubuntu/.rvm/rubies/ruby-${ruby_version}/bin:/home/ubuntu/.nvm/versions/node/v${node_version}/bin:${PATH}
 
 RUN \
-cd ${deps_dir} && \
-sudo chmod 666 Gemfile.lock && \
-sudo chmod 666 package-lock.json && \
-make install
+gem install \
+jekyll
 
-COPY \
-.devcontainer/.git_branch_bash \
-/home/ubuntu
+RUN \
+[ -s "$HOME/.nvm/nvm.sh" ] && \. "$HOME/.nvm/nvm.sh" && \
+nvm install ${node_version} && \
+npm install -g electron-packager gulp-cli yarn
+
+ADD .devcontainer/.git_branch_bash /home/ubuntu/.git_branch_bash
 
 RUN \
 tee -a /home/ubuntu/.bashrc <<EOF
+[ -s /home/ubuntu/.nvm/nvm.sh ] && source /home/ubuntu/.nvm/nvm.sh
 alias mkc='make clean'
 source /home/ubuntu/.git_branch_bash
 source /usr/share/bash-completion/completions/git
 EOF
-
-EXPOSE 3000

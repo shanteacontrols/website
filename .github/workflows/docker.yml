@@ -3,7 +3,7 @@ name: Docker
 on:
   push:
     paths:
-      - '.devcontainer/Dockerfile'
+      - '.devcontainer/Dockerfile.build'
 
 jobs:
   x86-64:
