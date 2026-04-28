@@ -448,6 +448,7 @@
 
         if (loadMore) {
             loadMore.addEventListener('click', function() {
+                loadMore.blur();
                 visibleLimit += getGalleryBatchSize();
                 scheduleRender();
             });

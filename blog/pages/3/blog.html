@@ -23,6 +23,7 @@
         if (!loadMore) return;
 
         event.preventDefault();
+        loadMore.blur();
 
         var nextPageUrl = loadMore.getAttribute('href');
         var originalText = loadMore.textContent;
