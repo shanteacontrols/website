@@ -1,0 +1,2 @@
+[quoted from willmodelisme on GitHub discussions]
+8 faders, 8 potentiometers, 10 rotary/switch encoder and a IC2 OLED display. 3D printed shell.

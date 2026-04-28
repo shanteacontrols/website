@@ -1,0 +1,2 @@
+[quoted from bealbrown on GitHub discussions]
+Just wanted a pcb that had potentiometer soldering footprints right on it, to simplify assembly (with the idea that I'd make a lot) only ended up making 5, but I literally edited some config, compiled the firmware, and it worked "out of the box". Really really impressed with this project and the hard work you've put in to achieve this degree of modularity / adaptability.
