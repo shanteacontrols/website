@@ -1,7 +1,7 @@
 {
     "name": "${localWorkspaceFolderBasename}",
     "build": {
-        "dockerfile": "Dockerfile.ghcr",
+        "dockerfile": "Dockerfile",
         "context": "${localWorkspaceFolder}"
     },
     "workspaceMount": "src=${localWorkspaceFolder},dst=/home/ubuntu/project,type=bind",
@@ -26,10 +26,7 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "ms-vscode.cpptools",
-                "llvm-vs-code-extensions.vscode-clangd",
                 "eamodio.gitlens",
-                "xaver.clang-format",
                 "timonwong.shellcheck"
             ]
         }
