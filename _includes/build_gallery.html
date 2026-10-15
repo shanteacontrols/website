@@ -1,0 +1,28 @@
+<section class="section shell" id="builds"><div class="section-top"><h2>{{ site.gallery.portfolio.title }}</h2></div>
+  <p class="builds-description">{{ site.gallery.portfolio.description }}</p>
+  <div class="build-grid" data-example-gallery id="build-gallery" role="region" aria-label="Build examples" tabindex="0">
+    <figure><a class="build-image" href="{{ '/images/dubfocus/01.webp' | relative_url }}" data-build-image data-title="DubFocus 16" data-category="Shantea Controls"><img src="{{ '/images/dubfocus/01.webp' | relative_url }}" alt="DubFocus 16 custom performance controller" loading="lazy"></a></figure>
+    <figure><a class="build-image" href="{{ '/images/portfolio/User Made/reelex-64-pots.webp' | relative_url }}" data-build-image data-title="64-pot controller" data-info-src="{{ '/images/portfolio/User Made/reelex-64-pots.txt' | relative_url }}" data-category="User Made"><img src="{{ '/images/portfolio/User Made/reelex-64-pots.webp' | relative_url }}" alt="Community-built controller with sixty-four potentiometers" loading="lazy"></a></figure>
+    <figure><a class="build-image" href="{{ '/images/portfolio/Shantea Controls/bergamot.webp' | relative_url }}" data-build-image data-title="Bergamot" data-category="Shantea Controls"><img src="{{ '/images/portfolio/Shantea Controls/bergamot.webp' | relative_url }}" alt="Bergamot custom MIDI controller by Shantea Controls" loading="lazy"></a></figure>
+  {% assign portfolio_paths = site.static_files | map: 'path' %}
+  {% assign portfolio_images = site.static_files | sort: 'path' %}
+  {% assign image_extensions = '.jpg,.jpeg,.png,.gif,.webp' | split: ',' %}
+  {% for file in portfolio_images %}
+    {% assign extension = file.extname | downcase %}
+    {% if file.path contains '/images/portfolio/' and image_extensions contains extension %}
+      {% unless file.path == '/images/portfolio/User Made/reelex-64-pots.webp' or file.path == '/images/portfolio/Shantea Controls/bergamot.webp' or file.path == '/images/portfolio/Shantea Controls/df16.webp' %}
+        {% assign relative_path = file.path | remove_first: '/images/portfolio/' %}
+        {% assign category = relative_path | split: '/' | first %}
+        {% assign title = file.basename | replace: '_', ' ' | replace: '-', ' ' | capitalize %}
+        {% assign info_path = file.path | remove: file.extname | append: '.txt' %}
+        <figure><a class="build-image" href="{{ file.path | relative_url }}" data-build-image data-title="{{ title | escape }}" data-category="{{ category | escape }}"{% if portfolio_paths contains info_path %} data-info-src="{{ info_path | relative_url }}"{% endif %}><img src="{{ file.path | relative_url }}" alt="{{ title | escape }} — {{ category | escape }}" loading="lazy"></a></figure>
+      {% endunless %}
+    {% endif %}
+  {% endfor %}
+</div>
+<dialog class="build-viewer" aria-label="Build photo viewer">
+  <div class="build-viewer-toolbar"><span class="build-viewer-counter"></span><div><button type="button" data-viewer-prev aria-label="Previous image"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 12H5m6-6-6 6 6 6"/></svg></button><button type="button" data-viewer-next aria-label="Next image"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><button type="button" data-viewer-close aria-label="Close image viewer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div></div>
+  <img class="build-viewer-image" alt="">
+  <div class="build-viewer-caption"><p class="build-viewer-info" hidden></p></div>
+</dialog>
+</section>

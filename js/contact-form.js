@@ -1,5 +1,5 @@
 (function () {
-  var form = document.getElementById('sera-contact-form');
+  var form = document.getElementById('contact-form');
   var message = form.elements.message;
   var button = form.querySelector('.send-button');
   var status = form.querySelector('.contact-form-status');

@@ -1,12 +1,12 @@
 {
-  "name": "sera-onepage",
+  "name": "shantea-controls-website",
   "version": "1.1.0",
-  "description": "A project including full setup for Jekyll, GulpJS, SASS & BrowserSync",
+  "description": "Shantea Controls and OpenDeck website",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Daniel Costrășel",
+  "author": "Shantea Controls",
   "license": "ISC",
   "dependencies": {
     "sass": "^1.48.0"
@@ -16,23 +16,21 @@
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
-    "gulp-concat": "^2.6.1",
     "gulp-minifier": "^3.5.0",
     "gulp-sass": "^5.1.0",
     "gulp-size": "^3.0.0"
   },
   "repository": {
-    "type": "template",
-    "url": "https://gleesik.ro/"
+    "type": "git",
+    "url": "https://github.com/shanteacontrols/website.git"
   },
   "keywords": [
     "jekyll",
-    "gulp",
-    "sass",
-    "browsersync"
+    "opendeck",
+    "shantea-controls"
   ],
   "bugs": {
-    "url": "https://gleesik.ro/"
+    "url": "https://github.com/shanteacontrols/website/issues"
   },
-  "homepage": "https://gleesik.ro/"
+  "homepage": "https://shanteacontrols.com"
 }

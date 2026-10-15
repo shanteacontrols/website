@@ -1,0 +1,15 @@
+<section class="section shell dubfocus-section" id="dubfocus16" aria-labelledby="dubfocus-title">
+  <div class="dubfocus-intro"><h2 id="dubfocus-title">{{ site.gallery.dubfocus16.title }}</h2><p>{{ site.gallery.dubfocus16.description }}</p><div class="actions"><a class="button button-primary" href="{{ include.contact_url | default: '#contact' }}">Ask about pricing & availability</a><a class="text-link" href="https://www.youtube.com/watch?v=zgm0ZtjMEMM" target="_blank" rel="noopener noreferrer">Watch the Alpha Steppa demo ↗</a></div></div>
+  <div class="build-grid dubfocus-gallery" data-example-gallery data-hide-caption id="dubfocus-gallery" role="region" aria-label="DubFocus 16 photos" tabindex="0">
+    {% assign dubfocus_photos = site.static_files | sort: 'path' %}
+    {% assign dubfocus_count = 0 %}
+    {% for file in dubfocus_photos %}
+      {% assign extension = file.extname | downcase %}
+      {% if file.path contains '/images/dubfocus/' and image_extensions contains extension %}
+        {% assign dubfocus_count = dubfocus_count | plus: 1 %}
+        <figure><a class="build-image" href="{{ file.path | relative_url }}" data-build-image data-title="DubFocus 16 · Photo {{ dubfocus_count }}" data-category="Shantea Controls"><img src="{{ file.path | relative_url }}" alt="DubFocus 16 controller, photo {{ dubfocus_count }}" width="640" height="430" loading="lazy"></a></figure>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+

@@ -1,0 +1,22 @@
+{% assign related_count = 0 %}
+{% capture related_cards %}
+  {% for post in site.posts %}
+    {% assign shares_tag = false %}
+    {% for tag in post.tags %}
+      {% if page.tags contains tag %}{% assign shares_tag = true %}{% endif %}
+    {% endfor %}
+    {% if post.url != page.url and shares_tag %}
+      <article class="blog-list">{% include blog_card.html post=post %}</article>
+      {% assign related_count = related_count | plus: 1 %}
+      {% if related_count == 3 %}{% break %}{% endif %}
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+{% if related_count > 0 %}
+<section class="section blog-related" aria-labelledby="related-title">
+  <div class="shell">
+    <h2 id="related-title">Related posts</h2>
+    <div class="related-post-list">{{ related_cards }}</div>
+  </div>
+</section>
+{% endif %}

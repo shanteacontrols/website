@@ -1,0 +1,112 @@
+[
+  {
+    "name": "APDS-9960 · Light, proximity & gestures",
+    "examples": [
+      {
+        "title": "Ambient Light Theater",
+        "description": "Turns APDS9960 ambient light readings into a window-lit room. Covering or exposing the sensor dims or brightens the scene, opens the blinds visually, and changes the dust motion.",
+        "path": "apds9960/ambient_light_theater"
+      },
+      {
+        "title": "Color Studio",
+        "description": "Displays APDS9960 RGB readings as a large live color swatch. Recent detected colors are kept as chips along the bottom so it is easy to compare objects or lighting changes.",
+        "path": "apds9960/color_studio"
+      },
+      {
+        "title": "Gesture Swipe Pad",
+        "description": "Visualizes APDS9960 gesture events as a stack of swipeable cards. Each detected gesture throws the top card up, down, left, or right and advances the deck like a phone or tablet interaction.",
+        "path": "apds9960/gesture_swipe_pad"
+      },
+      {
+        "title": "Proximity Bloom",
+        "description": "Visualizes APDS9960 proximity as a glowing bloom. Move a hand or object near the sensor to expand the flower, brighten the core, and energize the particles.",
+        "path": "apds9960/proximity_bloom"
+      }
+    ]
+  },
+  {
+    "name": "BNO085 · Motion & orientation",
+    "examples": [
+      {
+        "title": "Gravity Visualizer",
+        "description": "Shows the BNO085 gravity vector as a live 3D direction indicator. This is a simple way to inspect tilt direction without any Processing-side smoothing.",
+        "path": "bno085/gravity_visualizer"
+      },
+      {
+        "title": "Marble Maze",
+        "description": "Turns the BNO085 into a tilt controller for a small marble maze. Tilt the sensor to roll the marble through the board.",
+        "path": "bno085/marble_maze"
+      },
+      {
+        "title": "Orientation Cube",
+        "description": "Displays BNO085 orientation as a 3D cube. Quaternion data is used when available, with Euler angles as a fallback.",
+        "path": "bno085/orientation_cube"
+      },
+      {
+        "title": "Particle Rain",
+        "description": "Uses the BNO085 gravity vector to steer particles inside a 3D box. It is mostly a visual stress demo for tilt direction and responsiveness.",
+        "path": "bno085/particle_rain"
+      }
+    ]
+  },
+  {
+    "name": "CAP1188 · Capacitive touch",
+    "examples": [
+      {
+        "title": "Light Console",
+        "description": "Turns the eight CAP1188 capacitive touch inputs into a small lighting desk. Each touch toggles one colored beam, so the sensor behaves like eight physical scene buttons.",
+        "path": "cap1188/light_console"
+      },
+      {
+        "title": "Touch Piano",
+        "description": "Turns the eight CAP1188 capacitive touch inputs into a soft one-octave touch piano. Each electrode triggers one visual key and one generated note.",
+        "path": "cap1188/touch_piano"
+      }
+    ]
+  },
+  {
+    "name": "VL53L4CX · Distance",
+    "examples": [
+      {
+        "title": "Distance Tunnel",
+        "description": "Visualizes the VL53L4CX single-zone distance reading as a responsive depth tunnel. Press `m` to drive the effect from raw millimeters, or `n` to use the firmware-normalized output.",
+        "path": "vl53l4cx/distance_tunnel"
+      },
+      {
+        "title": "Touchless Resonator",
+        "description": "Turns the VL53L4CX normalized distance output into a soft touchless resonator. Slow hand movement gently plays the current note area, while sharper movement adds accents; press space to mute.",
+        "path": "vl53l4cx/touchless_resonator"
+      }
+    ]
+  },
+  {
+    "name": "VL53L5CX · Depth & presence",
+    "examples": [
+      {
+        "title": "Blob Tracker",
+        "description": "Tracks the largest close-range blob in the VL53L5CX 8x8 grid. Useful for seeing hand position as a single object instead of raw zones.",
+        "path": "vl53l5cx/blob_tracker"
+      },
+      {
+        "title": "Heatmap",
+        "description": "Draws the VL53L5CX 8x8 distance grid as a color heatmap. Close objects are highlighted so hand movement is easy to see.",
+        "path": "vl53l5cx/heatmap"
+      },
+      {
+        "title": "Point Cloud",
+        "description": "Shows the VL53L5CX 8x8 grid as a small 3D point cloud. This makes the depth shape easier to understand than a list of numbers.",
+        "path": "vl53l5cx/point_cloud"
+      },
+      {
+        "title": "Raw Monitor",
+        "description": "Displays raw VL53L5CX row data and frame-to-frame changes with no Processing-side filtering. Use it to verify firmware smoothing, invalid zones, and output rate.",
+        "path": "vl53l5cx/raw_monitor"
+      },
+      {
+        "title": "Touchless Synth",
+        "description": "Turns the VL53L5CX 8x8 grid into a simple touchless instrument. Hand position and distance drive the visual pads and generated sound.",
+        "path": "vl53l5cx/touchless_synth"
+      }
+    ]
+  }
+]

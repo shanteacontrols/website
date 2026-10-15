@@ -1,0 +1,34 @@
+[
+  {
+    "id": "apds-light",
+    "sensor": "APDS-9960 · Ambient light",
+    "title": "Light becomes part of the scene.",
+    "description": "Cover or expose the sensor to dim and brighten a virtual room, open its blinds, and change the motion of floating dust.",
+    "sketch": "apds9960/ambient_light_theater",
+    "alt": "Ambient Light Theater demo showing the physical sensor beside a responsive virtual room"
+  },
+  {
+    "id": "apds-proximity",
+    "sensor": "APDS-9960 · Proximity",
+    "title": "Make visuals respond to presence.",
+    "description": "Move a hand toward the sensor to grow a glowing bloom, brighten its core, and energize the particles around it.",
+    "sketch": "apds9960/proximity_bloom",
+    "alt": "Proximity Bloom demo showing a hand-controlled glowing flower"
+  },
+  {
+    "id": "bno-cube",
+    "sensor": "BNO085 · Orientation",
+    "title": "Turn movement into a controller.",
+    "description": "Rotate and tilt the sensor to steer a 3D cube. Orientation data connects physical movement to the scene on screen.",
+    "sketch": "bno085/orientation_cube",
+    "alt": "Orientation Cube demo showing the sensor hardware and a colorful cube following its rotation"
+  },
+  {
+    "id": "tof",
+    "sensor": "VL53L5CX · Depth sensing",
+    "title": "Explore interaction in three dimensions.",
+    "description": "Move your hand above an 8×8 distance sensor and see its shape as a live point cloud. Use the same depth data for position, presence, or touchless instruments.",
+    "sketch": "vl53l5cx/point_cloud",
+    "alt": "Time-of-flight demo showing a hand above the sensor and its shape rendered as a 3D point cloud"
+  }
+]

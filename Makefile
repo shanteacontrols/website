@@ -16,6 +16,9 @@ dev: $(INSTALL_INDICATOR)
 prod: $(INSTALL_INDICATOR)
 	@bundle exec gulp prod
 
+boards:
+	@node scripts/sync-boards.js --strict
+
 post:
 	@title="$(TITLE)"; \
 	if [[ -z "$$title" ]]; then \
@@ -38,4 +41,4 @@ post:
 		'' > "$$filename"; \
 	echo "Created $$filename"
 
-.PHONY: install dev prod post
+.PHONY: install dev prod boards post

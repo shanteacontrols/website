@@ -1,230 +1,90 @@
-#
-# Sera - OnePage Jekyll Template
-# Configuration File
-#
-
-# Information for compile
-exclude: ["node_modules", "opendeck-ui", "gulpfile.js", "package.json", "Gemfile", "README.md", "vendor", "gems", "documentation"]
-keep_files: ["css", "images"]
-
-#
-# If your website is placed in a separate folder on your server please modify
-# this with your folder name, by default is empty.
-# Example: Sera Demo is hosted on projects.gleesik.ro/sera-onepage
-# If I compile Sera Template and I put in /sera-onepage without modifing baseurl
-# than scripts can't be loaded corectly.
-# For this example my site url is: projects.gleesik.ro (This can be just www.example.com)
-# My folder for Demo Website is: /sera-onepage so baseurl: /sera-onepage
-#
+# Shantea Controls website
+exclude:
+- "*configurator palette*.png"
+- OpenDeck
+- node_modules
+- opendeck-ui
+- gulpfile.js
+- package.json
+- Gemfile
+- README.md
+- vendor
+- gems
+- documentation
+- scripts
+- Makefile
+- package-lock.json
+- Gemfile.lock
+keep_files:
+- css
+- images
 baseurl:
-
-# the base hostname & protocol for your site
-url: "https://shanteacontrols.com"
-
-####################################
-######   Optional Features    ######
-####################################
-smooth-scroll: false
-
-####################################
-###########   Plugins    ###########
-####################################
+url: https://shanteacontrols.com
 plugins:
-  - jekyll-paginate-v2
-  - jekyll-sitemap
-
-permalink: /:year/:month/:day/:title/
-
+- jekyll-paginate-v2
+- jekyll-sitemap
+permalink: "/:year/:month/:day/:title/"
 pagination:
   enabled: true
   debug: true
-  collection: 'posts'
+  collection: posts
   per_page: 10
-  permalink: '/pages/:num/'
-  title: ':title - page :num'
-  limit: 0 
-  sort_field: 'date'
+  permalink: "/pages/:num/"
+  title: ":title - page :num"
+  limit: 0
+  sort_field: date
   sort_reverse: true
   tag: ''
-  locale: '' 
-  trail: 
+  locale: ''
+  trail:
     before: 2
     after: 2
-  extension: 'html'
-  indexpage: 'blog'
-
-#######################################################
-#######################################################
-###############   HEADER INFORMATIONS   ###############
-#######################################################
-#######################################################
-
-# This is your site title
+  extension: html
+  indexpage: blog
 title: Shantea Controls
-# Website language
 lang: en-US
-# Header Title
-header-title: Plug and play. <strong>REALLY</strong>.
-# Header Tagline
-header-tagline: OpenDeck DIY MIDI platform
-
-####################################
-######   CTA Header Buttons   ######
-####################################
-
-# Focus Buttons
-header-focus-button:
-  title: Buy now
-  url: https://lectronz.com/products/opendeck-l/
-
-# Secondary Buttons
-header-secondary-button:
-  title: Configure now
-  url: https://config.shanteacontrols.com
-
-####################################
-######  Global Social Links   ######
-####################################
-facebook: 'https://www.facebook.com/shanteacontrolsmidi'
-github: 'https://github.com/shanteacontrols/OpenDeck'
-
-#####################################
-#############   About   #############
-#####################################
-about-title: Build MIDI controllers with ease
-about-description: Instead of spending time on circuit design, programming, and solving lots of unnecessary problems, simply connect the components of your MIDI controller to an OpenDeck board and you're done. The web configurator allows for unparalleled customization of every aspect of your MIDI controller.
-
-#####################################
-#############  Features  ############
-#####################################
-features-title: Packed with features
-features-description: OpenDeck is the most featureful and configurable MIDI platform on the planet.
-
-#
-# Features
-#
-features:
-
-- title: USB MIDI
-  description: No drivers required
-  svg: icons/usb-midi.svg
-
-- title: DIN MIDI
-  description: Connect synths and other gear
-  svg: icons/din-midi.svg
-
-- title: BLE MIDI
-  description: Bluetooth Low Energy MIDI available on selected boards.
-  svg: icons/ble-midi.svg
-
-- title: Universally supported
-  description: Windows, macOS, Linux, Android, iOS.
-  svg: icons/universally-supported.svg
-
-- title: Online configurator
-  description: Configure your controller in web browser. No installation required.
-  svg: icons/online-configurator.svg
-
-- title: Firmware updates in browser
-  description: Update your board with new features
-  svg: icons/firmware-updates-browser.svg
-
-- title: Custom board support
-  description: Easily add support for yours!
-  svg: icons/custom-board-support.svg
-
-- title: Inputs
-  description: Buttons, potentiometers, FSRs, encoders
-  svg: icons/inputs.svg
-
-- title: Outputs
-  description: Single color and RGB LEDs
-  svg: icons/outputs.svg
-
-- title: Touchscreen support
-  description: All Nextion models
-  svg: icons/touchscreen-support.svg
-
-- title: Presets
-  description: Up to 10 individual mappings
-  svg: icons/presets.svg
-
-- title: 14-bit support
-  description: Pitch bend, high-resolution CC and NRPN support
-  svg: icons/fourteen-bit-support.svg
-
-#####################################
-############  Gallery  ############
-#####################################
+facebook: https://www.facebook.com/shanteacontrolsmidi
+github: https://github.com/shanteacontrols/OpenDeck
 gallery:
   portfolio:
     title: Built with OpenDeck
-    description: Check the examples below and see what is possible with OpenDeck.
-    dir: images/portfolio
-  boards:
-    title: Supported boards
-    description: OpenDeck firmware runs on the official OpenDeck board and a growing set of supported development boards. Still feeling limited? Firmware supports defining your own board variants as well.
-    dir: images/boards
+    description: Explore a selection of controllers and custom builds made with OpenDeck.
   dubfocus16:
     title: DubFocus 16
-    description: A custom OpenDeck-powered controller designed by Shantea Controls especially with dub producers in mind. 16 channels, high quality ALPS pots and faders, 32 Omron buttons with integrated red LEDs and USB-C connection. Contact for details on pricing and availability.
+    description: A custom OpenDeck-powered controller designed by Shantea Controls
+      especially with dub producers in mind. 16 channels, high quality ALPS pots and
+      faders, 32 Omron buttons with integrated red LEDs and USB-C connection. Contact
+      for details on pricing and availability.
     dir: images/dubfocus
-
-
-#####################################
-########### Testimonials ############
-#####################################
 testimonials-title: Testimonials
-testimonials-description: Users just love OpenDeck, but don't take my word for it.
-
-#
-# Testimonials
-#
 testimonials:
-
 - name: Liam Lacey
-  cite: "(...) the most affordable and flexible platform for building your own custom MIDI controllers."
-
+  cite: "(...) the most affordable and flexible platform for building your own custom
+    MIDI controllers."
 - name: Steve
-  cite: "The new interface is a triumph of usability and makes configuring controllers very easy indeed. In my opinion, this is the best MIDI controller available."
-
+  cite: The new interface is a triumph of usability and makes configuring controllers
+    very easy indeed. In my opinion, this is the best MIDI controller available.
 - name: Manuel
-  cite: "It's the pointy, finished and perfect board for all your DIY MIDI"
-
+  cite: It's the pointy, finished and perfect board for all your DIY MIDI
 - name: Ben Garland
-  cite: "OpenDeck makes me excited for MIDI controllers like never before. It takes just a few MINUTES to get up and running with OpenDeck! It's literally plug and PLAY!"
-
+  cite: OpenDeck makes me excited for MIDI controllers like never before. It takes
+    just a few MINUTES to get up and running with OpenDeck! It's literally plug and
+    PLAY!
 - name: Scott Koopmann
-  cite: "OpenDeck is the future of DIY MIDI controller builds. Hands down"
-
+  cite: OpenDeck is the future of DIY MIDI controller builds. Hands down
 - name: David Dyball
-  cite: "I'm just blown away with how amazing this is. The web interface is super simple and really smooth to use."
-
+  cite: I'm just blown away with how amazing this is. The web interface is super simple
+    and really smooth to use.
 - name: Barry Limestone
-  cite: "Literally the greatest product related to MIDI controls I have ever seen"
-
+  cite: Literally the greatest product related to MIDI controls I have ever seen
 - name: Andrey
-  cite: "wow it works right out of the box, impressive"
-
+  cite: wow it works right out of the box, impressive
 - name: ckett
-  cite: "The OpenDeck platform has been the easiest and most stable board I have used to make a custom midi controller."
-
-#####################################
-############# Our Blog ##############
-#####################################
-blog-title: Latest blog posts
-blog-description:
-
-#####################################
-############   Contact   ############
-#####################################
-contact-title: Contact
-contact-description: Want to know more about OpenDeck? Interested in a custom MIDI controller? Send a message (English please)!
-
-#####################################
-#############   Footer   ############
-#####################################
-footer-description: 
+  cite: The OpenDeck platform has been the easiest and most stable board I have used
+    to make a custom midi controller.
+footer-description:
 footer-copyright-text: Shantea Controls
 footer-copyright-year: 2026
 footer-location: Zagreb, Croatia
+description: OpenDeck connects sensors and physical controls to your software using
+  MIDI and OSC.

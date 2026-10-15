@@ -1,0 +1,212 @@
+[
+  {
+    "name": "Official OpenDeck L boards",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/opendeck31.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/Official-OpenDeck-L-boards",
+    "midi": "USB, DIN",
+    "osc": "No"
+  },
+  {
+    "name": "Official OpenDeck M boards",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/opendeck2.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/Official-OpenDeck-M-boards",
+    "midi": "USB, DIN",
+    "osc": "No"
+  },
+  {
+    "name": "Adafruit Grand Central M4",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/grand_central_m4.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/Adafruit-Grand-Central-M4",
+    "midi": "USB, DIN",
+    "osc": "No"
+  },
+  {
+    "name": "Adafruit Metro ESP32-S3",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/metro_esp32s3.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/Adafruit-Metro-ESP32-S3",
+    "midi": "USB, DIN",
+    "osc": "No"
+  },
+  {
+    "name": "Adafruit Metro ESP32-S3 + W5500 Ethernet Shield",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/metro_esp32s3_w5500.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/Adafruit-Metro-ESP32-S3-W5500",
+    "midi": "USB",
+    "osc": "Ethernet"
+  },
+  {
+    "name": "Adafruit Metro ESP32-S3 + W6100 Ethernet Shield",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/metro_esp32s3_w6100.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/Adafruit-Metro-ESP32-S3-W6100",
+    "midi": "USB",
+    "osc": "Ethernet"
+  },
+  {
+    "name": "Adafruit Metro RP2040",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/metro_rp2040.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/Adafruit-Metro-RP2040",
+    "midi": "USB, DIN",
+    "osc": "No"
+  },
+  {
+    "name": "Adafruit Metro RP2040 + W5500 Ethernet Shield",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/metro_rp2040_w5500.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/Adafruit-Metro-RP2040-W5500",
+    "midi": "USB",
+    "osc": "Ethernet"
+  },
+  {
+    "name": "Adafruit Metro RP2040 + W6100 Ethernet Shield",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/metro_rp2040_w6100.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/Adafruit-Metro-RP2040-W6100",
+    "midi": "USB",
+    "osc": "Ethernet"
+  },
+  {
+    "name": "Arduino Nano 33 BLE",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/arduino_nano_33_ble.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/Arduino-Nano-33-BLE",
+    "midi": "USB, BLE, DIN",
+    "osc": "No"
+  },
+  {
+    "name": "LILYGO T-ETH Elite",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/lilygo_t_eth_elite.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/LILYGO-T-ETH-Elite",
+    "midi": "USB",
+    "osc": "Ethernet"
+  },
+  {
+    "name": "nRF52840 DK",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/nrf52840dk.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/nRF52840-DK",
+    "midi": "USB, DIN, BLE",
+    "osc": "No"
+  },
+  {
+    "name": "nRF5340 DK",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/nrf5340dk.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/nRF5340-DK",
+    "midi": "USB, DIN, BLE",
+    "osc": "No"
+  },
+  {
+    "name": "Nucleo F767ZI",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/nucleo_f767zi.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/Nucleo-F767ZI",
+    "midi": "DIN",
+    "osc": "Ethernet"
+  },
+  {
+    "name": "Nucleo H563ZI",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/nucleo_h563zi.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/Nucleo-H563ZI",
+    "midi": "DIN",
+    "osc": "Ethernet"
+  },
+  {
+    "name": "Nucleo H753ZI",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/nucleo_h753zi.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/Nucleo-H753ZI",
+    "midi": "DIN",
+    "osc": "Ethernet"
+  },
+  {
+    "name": "Olimex ESP32-POE",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/olimex_esp32_poe.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/Olimex-ESP32-POE",
+    "midi": "No",
+    "osc": "Ethernet"
+  },
+  {
+    "name": "Raspberry Pi Pico",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/pico.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/Raspberry-Pi-Pico",
+    "midi": "USB, DIN",
+    "osc": "No"
+  },
+  {
+    "name": "Raspberry Pi Pico 2",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/pico2.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/Raspberry-Pi-Pico-2",
+    "midi": "USB, DIN",
+    "osc": "No"
+  },
+  {
+    "name": "STM32F4 Discovery",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/discovery_f407g.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/STM32F4-Discovery",
+    "midi": "USB, DIN",
+    "osc": "No"
+  },
+  {
+    "name": "STM32F411 Black Pill",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/blackpill411.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/STM32F411-Black-Pill",
+    "midi": "USB, DIN",
+    "osc": "No"
+  },
+  {
+    "name": "Teensy 4.0",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/teensy4.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/Teensy-4.0",
+    "midi": "USB, DIN",
+    "osc": "No"
+  },
+  {
+    "name": "Teensy 4.1",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/teensy41.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/Teensy-4.1",
+    "midi": "USB, DIN",
+    "osc": "No"
+  },
+  {
+    "name": "W5500-EVB-Pico",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/w5500_evb_pico.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/W5500-EVB-Pico",
+    "midi": "USB",
+    "osc": "Ethernet"
+  },
+  {
+    "name": "W5500-EVB-Pico2",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/w5500_evb_pico2.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/W5500-EVB-Pico2",
+    "midi": "USB, DIN",
+    "osc": "Ethernet"
+  },
+  {
+    "name": "W6100-EVB-Pico",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/w6100_evb_pico.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/W6100-EVB-Pico",
+    "midi": "USB, DIN",
+    "osc": "Ethernet"
+  },
+  {
+    "name": "W6100-EVB-Pico2",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/w6100_evb_pico2.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/W6100-EVB-Pico2",
+    "midi": "USB, DIN",
+    "osc": "Ethernet"
+  },
+  {
+    "name": "Waveshare Core405R",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/ws_core405r.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/Waveshare-Core405R",
+    "midi": "USB, DIN",
+    "osc": "No"
+  },
+  {
+    "name": "Waveshare ESP32-S3-ETH",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/ws_esp32_s3_eth.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/Waveshare-ESP32-S3-ETH",
+    "midi": "USB",
+    "osc": "Ethernet"
+  },
+  {
+    "name": "wESP32",
+    "image": "https://raw.githubusercontent.com/wiki/shanteacontrols/OpenDeck/img/boards/wesp32.webp",
+    "url": "https://github.com/shanteacontrols/OpenDeck/wiki/wESP32",
+    "midi": "No",
+    "osc": "Ethernet"
+  }
+]

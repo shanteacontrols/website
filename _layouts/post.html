@@ -1,53 +1,15 @@
 ---
 layout: blog
 ---
-
-{% include page-title.html %}
-<div class="post-content-area pb-100 clearfix">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-10 mx-auto">
-        <div class="s-post-details">
-          {% if page.image %}
-          <div class="post-image mb-4">
-            <img
-              class="mx-auto d-block"
-              src="{{ site.baseurl }}/images/blog/{{page.image}}"
-              alt="{{page.title}}"
-            />
-          </div>
-          {% endif %}
-
-          <div class="entry-content">{{page.content}}</div>
-        </div>
-        <div class="post-end-divider" aria-hidden="true"></div>
-        <div class="categories-carousel pb-60 clearfix">
-          <header class="section-header text-center">
-            <h2>Related Posts</h2>
-          </header>
-          {% include related_posts_carousel.html %}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<script>
-  (function () {
-    var relatedPostList = document.querySelector('.related-post-list');
-
-    if (!relatedPostList) return;
-
-    relatedPostList.addEventListener('click', function (event) {
-      var card = event.target.closest('.related-post-card[data-href]');
-      if (!card || event.target.closest('a')) return;
-      window.location.href = card.dataset.href;
-    });
-
-    relatedPostList.addEventListener('keydown', function (event) {
-      var card = event.target.closest('.related-post-card[data-href]');
-      if (card && event.key === 'Enter') {
-        window.location.href = card.dataset.href;
-      }
-    });
-  }());
-</script>
+<article class="section shell blog-article">
+  <header class="blog-article-heading">
+    <a class="text-link" href="{{ '/blog/blog.html' | relative_url }}">← All posts</a>
+    <h1>{{ page.title | escape }}</h1>
+    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B %-d, %Y' }}</time>
+  </header>
+  {% if page.image %}
+  <img class="blog-article-image" src="{{ '/images/blog/' | append: page.image | relative_url }}" alt="{{ page.title | escape }}">
+  {% endif %}
+  <div class="entry-content">{{ content }}</div>
+</article>
+{% include related_posts.html %}
