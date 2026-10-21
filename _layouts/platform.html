@@ -21,7 +21,7 @@
   {% else %}<meta name="twitter:card" content="summary">{% endif %}
   {% endif %}
   <meta name="theme-color" content="#282828">
-  <link rel="icon" href="{{ '/images/favicon.png' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="512x512" href="{{ '/images/favicon.png' | relative_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -36,11 +36,11 @@
       {% assign section_root = '' %}
       {% unless page.url == '/' %}{% assign section_root = '/' | relative_url %}{% endunless %}
       <nav id="primary-nav" aria-label="Primary">
-        <a href="{{ section_root }}#custom-work">Contact ↗</a>
-        <a href="{{ '/blog/blog.html' | relative_url }}"{% if page.layout == 'blog' or page.layout == 'post' %} aria-current="page"{% endif %}>Blog ↗</a>
-        <a target="_blank" rel="noopener noreferrer" href="https://github.com/shanteacontrols/OpenDeck/wiki">Docs ↗</a>
-        <a target="_blank" rel="noopener noreferrer" href="https://github.com/shanteacontrols/OpenDeck">GitHub ↗</a>
-        <a target="_blank" rel="noopener noreferrer" href="https://config.shanteacontrols.com">Configurator ↗</a>
+        <a href="{{ section_root }}#custom-work"><span class="nav-label">Contact</span></a>
+        <a href="{{ '/blog/blog.html' | relative_url }}"{% if page.layout == 'blog' or page.layout == 'post' %} aria-current="page"{% endif %}><span class="nav-label">Blog</span></a>
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/shanteacontrols/OpenDeck/wiki"><span class="nav-label">Docs</span></a>
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/shanteacontrols/OpenDeck"><span class="nav-label">GitHub</span></a>
+        <a target="_blank" rel="noopener noreferrer" href="https://config.shanteacontrols.com"><span class="nav-label">Configurator</span></a>
       </nav>
     </div>
   </header>

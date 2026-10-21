@@ -30,7 +30,7 @@ p { color: $muted; }
 .section { padding-block: 40px; }
 .eyebrow { font: 14px/1.5 $mono; letter-spacing: .07em; color: $accent; margin-bottom: 15px; }
 .text-link { color: $accent; font-size: 14px; font-weight: 600; }
-:where(#primary-nav a, .demo-details summary, .text-link, .card-link, .studio-link, .support-note a, .sensor-requirements a, .entry-content a):is(:hover, :focus-visible),
+:where(.demo-details summary, .text-link, .card-link, .studio-link, .support-note a, .sensor-requirements a, .entry-content a):is(:hover, :focus-visible),
 .sensor-example-groups a:is(:hover, :focus-visible) strong,
 .board-card:is(:hover, :focus-visible) .board-card-copy > span,
 .blog-card:is(:hover, :focus-visible) .text-link {
@@ -51,9 +51,12 @@ p { color: $muted; }
 .brand { display: inline-flex; align-items: center; gap: 10px; font: 700 15px/1.2 'Nunito', Arial, sans-serif; letter-spacing: .025em; white-space: nowrap; }
 .masthead .brand { justify-self: start; }
 .brand img { display: block; height: 52px; width: auto; flex: 0 0 auto; }
-#primary-nav { grid-column: 2; display: flex; align-items: center; gap: 23px; font: 400 1.2rem/1 'Nunito', Arial, sans-serif; letter-spacing: .08rem; color: $accent; }
-#primary-nav a { white-space: nowrap; text-transform: uppercase; }
-#primary-nav a[aria-current] { text-decoration: underline; text-underline-offset: 5px; }
+#primary-nav { grid-column: 2; display: flex; align-items: center; gap: 23px; font: 400 .875rem/1.5 'Nunito', Arial, sans-serif; letter-spacing: .08rem; color: $configurator-foreground; }
+// Match OpenDeckUI's device-nav labels and active indicator.
+#primary-nav a { padding-block: 12px; white-space: nowrap; text-align: center; text-transform: uppercase; }
+#primary-nav a:is(:hover, :focus-visible, [aria-current]) { color: $accent; }
+#primary-nav .nav-label { position: relative; display: inline-block; }
+#primary-nav a[aria-current] .nav-label::before { content: ''; position: absolute; bottom: -5px; left: 50%; width: 50%; height: 1px; background: $accent; transform: translateX(-50%); }
 .menu-toggle { display: none; }
 .hero { display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 70px; padding-block: 60px 68px; }
 .hero .actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -117,7 +120,8 @@ a.build-image:hover img { transform: scale(1.035); }
 .custom-copy { padding: 45px; }
 .custom-copy h2 { margin-bottom: 18px; font-size: 37px; }
 .custom-copy > p:not(.eyebrow) { font-size: 15px; }
-.custom-list { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 20px; list-style: none; padding: 0; margin: 23px 0 28px; font-size: 14px; color: $configurator-foreground; }
+.custom-copy > p.engineering-intro { color: $configurator-foreground; margin-bottom: 14px; }
+.custom-list { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 20px; list-style: none; padding: 0; margin: 23px 0 28px; font-size: 15px; color: $configurator-foreground; }
 .custom-list li::before { content: '▪'; color: $accent; padding-right: 7px; }
 .contact-details > summary { display: inline-flex; }
 .contact-details[open] > summary { margin-bottom: 24px; }
